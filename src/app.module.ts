@@ -9,6 +9,10 @@ import { AuthModule } from './auth/auth.module.js';
 import { CategoriasModule } from './categorias/categorias.module.js';
 import { UsuariosModule } from './usuarios/usuarios.module.js';
 import { ProductosModule } from './productos/productos.module.js';
+import { VentasModule } from './ventas/ventas.module.js';
+import { DetalleVentaModule } from './detalle-venta/detalle-venta.module.js';
+import { CajasModule } from './cajas/cajas.module.js';
+import { CarritosModule } from './carritos/carritos.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -29,6 +33,10 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     AuthModule,
     CategoriasModule,
     ProductosModule,
+    VentasModule,
+    DetalleVentaModule,
+    CajasModule,
+    CarritosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

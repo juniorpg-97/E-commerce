@@ -32,7 +32,6 @@ export type DetalleVentaAvgAggregateOutputType = {
   productoId: number | null
   cantidad: number | null
   precioUnitario: runtime.Decimal | null
-  descuento: runtime.Decimal | null
   subtotal: runtime.Decimal | null
 }
 
@@ -42,7 +41,6 @@ export type DetalleVentaSumAggregateOutputType = {
   productoId: number | null
   cantidad: number | null
   precioUnitario: runtime.Decimal | null
-  descuento: runtime.Decimal | null
   subtotal: runtime.Decimal | null
 }
 
@@ -52,7 +50,6 @@ export type DetalleVentaMinAggregateOutputType = {
   productoId: number | null
   cantidad: number | null
   precioUnitario: runtime.Decimal | null
-  descuento: runtime.Decimal | null
   subtotal: runtime.Decimal | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -64,7 +61,6 @@ export type DetalleVentaMaxAggregateOutputType = {
   productoId: number | null
   cantidad: number | null
   precioUnitario: runtime.Decimal | null
-  descuento: runtime.Decimal | null
   subtotal: runtime.Decimal | null
   creadoEn: Date | null
   actualizadoEn: Date | null
@@ -76,7 +72,6 @@ export type DetalleVentaCountAggregateOutputType = {
   productoId: number
   cantidad: number
   precioUnitario: number
-  descuento: number
   subtotal: number
   creadoEn: number
   actualizadoEn: number
@@ -90,7 +85,6 @@ export type DetalleVentaAvgAggregateInputType = {
   productoId?: true
   cantidad?: true
   precioUnitario?: true
-  descuento?: true
   subtotal?: true
 }
 
@@ -100,7 +94,6 @@ export type DetalleVentaSumAggregateInputType = {
   productoId?: true
   cantidad?: true
   precioUnitario?: true
-  descuento?: true
   subtotal?: true
 }
 
@@ -110,7 +103,6 @@ export type DetalleVentaMinAggregateInputType = {
   productoId?: true
   cantidad?: true
   precioUnitario?: true
-  descuento?: true
   subtotal?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -122,7 +114,6 @@ export type DetalleVentaMaxAggregateInputType = {
   productoId?: true
   cantidad?: true
   precioUnitario?: true
-  descuento?: true
   subtotal?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -134,7 +125,6 @@ export type DetalleVentaCountAggregateInputType = {
   productoId?: true
   cantidad?: true
   precioUnitario?: true
-  descuento?: true
   subtotal?: true
   creadoEn?: true
   actualizadoEn?: true
@@ -233,7 +223,6 @@ export type DetalleVentaGroupByOutputType = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal
-  descuento: runtime.Decimal
   subtotal: runtime.Decimal
   creadoEn: Date
   actualizadoEn: Date
@@ -268,7 +257,6 @@ export type DetalleVentaWhereInput = {
   productoId?: Prisma.IntFilter<"DetalleVenta"> | number
   cantidad?: Prisma.IntFilter<"DetalleVenta"> | number
   precioUnitario?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
@@ -283,7 +271,6 @@ export type DetalleVentaOrderByWithRelationInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -301,7 +288,6 @@ export type DetalleVentaWhereUniqueInput = Prisma.AtLeast<{
   productoId?: Prisma.IntFilter<"DetalleVenta"> | number
   cantidad?: Prisma.IntFilter<"DetalleVenta"> | number
   precioUnitario?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
@@ -316,7 +302,6 @@ export type DetalleVentaOrderByWithAggregationInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -336,7 +321,6 @@ export type DetalleVentaScalarWhereWithAggregatesInput = {
   productoId?: Prisma.IntWithAggregatesFilter<"DetalleVenta"> | number
   cantidad?: Prisma.IntWithAggregatesFilter<"DetalleVenta"> | number
   precioUnitario?: Prisma.DecimalWithAggregatesFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalWithAggregatesFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalWithAggregatesFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeWithAggregatesFilter<"DetalleVenta"> | Date | string
   actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"DetalleVenta"> | Date | string
@@ -345,7 +329,6 @@ export type DetalleVentaScalarWhereWithAggregatesInput = {
 export type DetalleVentaCreateInput = {
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -360,7 +343,6 @@ export type DetalleVentaUncheckedCreateInput = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -370,7 +352,6 @@ export type DetalleVentaUncheckedCreateInput = {
 export type DetalleVentaUpdateInput = {
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -385,7 +366,6 @@ export type DetalleVentaUncheckedUpdateInput = {
   productoId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -398,7 +378,6 @@ export type DetalleVentaCreateManyInput = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -407,7 +386,6 @@ export type DetalleVentaCreateManyInput = {
 export type DetalleVentaUpdateManyMutationInput = {
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -419,7 +397,6 @@ export type DetalleVentaUncheckedUpdateManyInput = {
   productoId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -446,7 +423,6 @@ export type DetalleVentaCountOrderByAggregateInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -458,7 +434,6 @@ export type DetalleVentaAvgOrderByAggregateInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
@@ -468,7 +443,6 @@ export type DetalleVentaMaxOrderByAggregateInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -480,7 +454,6 @@ export type DetalleVentaMinOrderByAggregateInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
@@ -492,7 +465,6 @@ export type DetalleVentaSumOrderByAggregateInput = {
   productoId?: Prisma.SortOrder
   cantidad?: Prisma.SortOrder
   precioUnitario?: Prisma.SortOrder
-  descuento?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
 }
 
@@ -599,7 +571,6 @@ export type DetalleVentaUncheckedUpdateManyWithoutVentaNestedInput = {
 export type DetalleVentaCreateWithoutProductoInput = {
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -612,7 +583,6 @@ export type DetalleVentaUncheckedCreateWithoutProductoInput = {
   ventaId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -654,7 +624,6 @@ export type DetalleVentaScalarWhereInput = {
   productoId?: Prisma.IntFilter<"DetalleVenta"> | number
   cantidad?: Prisma.IntFilter<"DetalleVenta"> | number
   precioUnitario?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFilter<"DetalleVenta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"DetalleVenta"> | Date | string
@@ -663,7 +632,6 @@ export type DetalleVentaScalarWhereInput = {
 export type DetalleVentaCreateWithoutMovimientosInput = {
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -677,7 +645,6 @@ export type DetalleVentaUncheckedCreateWithoutMovimientosInput = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -702,7 +669,6 @@ export type DetalleVentaUpdateToOneWithWhereWithoutMovimientosInput = {
 export type DetalleVentaUpdateWithoutMovimientosInput = {
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -716,7 +682,6 @@ export type DetalleVentaUncheckedUpdateWithoutMovimientosInput = {
   productoId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -725,7 +690,6 @@ export type DetalleVentaUncheckedUpdateWithoutMovimientosInput = {
 export type DetalleVentaCreateWithoutVentaInput = {
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -738,7 +702,6 @@ export type DetalleVentaUncheckedCreateWithoutVentaInput = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -776,7 +739,6 @@ export type DetalleVentaCreateManyProductoInput = {
   ventaId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -785,7 +747,6 @@ export type DetalleVentaCreateManyProductoInput = {
 export type DetalleVentaUpdateWithoutProductoInput = {
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -798,7 +759,6 @@ export type DetalleVentaUncheckedUpdateWithoutProductoInput = {
   ventaId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -810,7 +770,6 @@ export type DetalleVentaUncheckedUpdateManyWithoutProductoInput = {
   ventaId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -821,7 +780,6 @@ export type DetalleVentaCreateManyVentaInput = {
   productoId: number
   cantidad: number
   precioUnitario: runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Date | string
   actualizadoEn?: Date | string
@@ -830,7 +788,6 @@ export type DetalleVentaCreateManyVentaInput = {
 export type DetalleVentaUpdateWithoutVentaInput = {
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -843,7 +800,6 @@ export type DetalleVentaUncheckedUpdateWithoutVentaInput = {
   productoId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -855,7 +811,6 @@ export type DetalleVentaUncheckedUpdateManyWithoutVentaInput = {
   productoId?: Prisma.IntFieldUpdateOperationsInput | number
   cantidad?: Prisma.IntFieldUpdateOperationsInput | number
   precioUnitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -898,7 +853,6 @@ export type DetalleVentaSelect<ExtArgs extends runtime.Types.Extensions.Internal
   productoId?: boolean
   cantidad?: boolean
   precioUnitario?: boolean
-  descuento?: boolean
   subtotal?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -914,7 +868,6 @@ export type DetalleVentaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   productoId?: boolean
   cantidad?: boolean
   precioUnitario?: boolean
-  descuento?: boolean
   subtotal?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -928,7 +881,6 @@ export type DetalleVentaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   productoId?: boolean
   cantidad?: boolean
   precioUnitario?: boolean
-  descuento?: boolean
   subtotal?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
@@ -942,13 +894,12 @@ export type DetalleVentaSelectScalar = {
   productoId?: boolean
   cantidad?: boolean
   precioUnitario?: boolean
-  descuento?: boolean
   subtotal?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
 }
 
-export type DetalleVentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ventaId" | "productoId" | "cantidad" | "precioUnitario" | "descuento" | "subtotal" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["detalleVenta"]>
+export type DetalleVentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ventaId" | "productoId" | "cantidad" | "precioUnitario" | "subtotal" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["detalleVenta"]>
 export type DetalleVentaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   venta?: boolean | Prisma.VentaDefaultArgs<ExtArgs>
   producto?: boolean | Prisma.ProductoDefaultArgs<ExtArgs>
@@ -977,7 +928,6 @@ export type $DetalleVentaPayload<ExtArgs extends runtime.Types.Extensions.Intern
     productoId: number
     cantidad: number
     precioUnitario: runtime.Decimal
-    descuento: runtime.Decimal
     subtotal: runtime.Decimal
     creadoEn: Date
     actualizadoEn: Date
@@ -1412,7 +1362,6 @@ export interface DetalleVentaFieldRefs {
   readonly productoId: Prisma.FieldRef<"DetalleVenta", 'Int'>
   readonly cantidad: Prisma.FieldRef<"DetalleVenta", 'Int'>
   readonly precioUnitario: Prisma.FieldRef<"DetalleVenta", 'Decimal'>
-  readonly descuento: Prisma.FieldRef<"DetalleVenta", 'Decimal'>
   readonly subtotal: Prisma.FieldRef<"DetalleVenta", 'Decimal'>
   readonly creadoEn: Prisma.FieldRef<"DetalleVenta", 'DateTime'>
   readonly actualizadoEn: Prisma.FieldRef<"DetalleVenta", 'DateTime'>

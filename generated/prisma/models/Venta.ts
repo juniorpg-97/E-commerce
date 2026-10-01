@@ -31,9 +31,9 @@ export type VentaAvgAggregateOutputType = {
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
-  subtotal: runtime.Decimal | null
+  subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
-  total: runtime.Decimal | null
+  totalVenta: runtime.Decimal | null
 }
 
 export type VentaSumAggregateOutputType = {
@@ -41,9 +41,9 @@ export type VentaSumAggregateOutputType = {
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
-  subtotal: runtime.Decimal | null
+  subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
-  total: runtime.Decimal | null
+  totalVenta: runtime.Decimal | null
 }
 
 export type VentaMinAggregateOutputType = {
@@ -52,9 +52,9 @@ export type VentaMinAggregateOutputType = {
   usuarioId: number | null
   clienteId: number | null
   fecha: Date | null
-  subtotal: runtime.Decimal | null
+  subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
-  total: runtime.Decimal | null
+  totalVenta: runtime.Decimal | null
   metodoPago: $Enums.MetodoPago | null
   estado: $Enums.EstadoVenta | null
   observaciones: string | null
@@ -68,9 +68,9 @@ export type VentaMaxAggregateOutputType = {
   usuarioId: number | null
   clienteId: number | null
   fecha: Date | null
-  subtotal: runtime.Decimal | null
+  subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
-  total: runtime.Decimal | null
+  totalVenta: runtime.Decimal | null
   metodoPago: $Enums.MetodoPago | null
   estado: $Enums.EstadoVenta | null
   observaciones: string | null
@@ -84,9 +84,9 @@ export type VentaCountAggregateOutputType = {
   usuarioId: number
   clienteId: number
   fecha: number
-  subtotal: number
+  subtotalVenta: number
   descuento: number
-  total: number
+  totalVenta: number
   metodoPago: number
   estado: number
   observaciones: number
@@ -101,9 +101,9 @@ export type VentaAvgAggregateInputType = {
   cajaId?: true
   usuarioId?: true
   clienteId?: true
-  subtotal?: true
+  subtotalVenta?: true
   descuento?: true
-  total?: true
+  totalVenta?: true
 }
 
 export type VentaSumAggregateInputType = {
@@ -111,9 +111,9 @@ export type VentaSumAggregateInputType = {
   cajaId?: true
   usuarioId?: true
   clienteId?: true
-  subtotal?: true
+  subtotalVenta?: true
   descuento?: true
-  total?: true
+  totalVenta?: true
 }
 
 export type VentaMinAggregateInputType = {
@@ -122,9 +122,9 @@ export type VentaMinAggregateInputType = {
   usuarioId?: true
   clienteId?: true
   fecha?: true
-  subtotal?: true
+  subtotalVenta?: true
   descuento?: true
-  total?: true
+  totalVenta?: true
   metodoPago?: true
   estado?: true
   observaciones?: true
@@ -138,9 +138,9 @@ export type VentaMaxAggregateInputType = {
   usuarioId?: true
   clienteId?: true
   fecha?: true
-  subtotal?: true
+  subtotalVenta?: true
   descuento?: true
-  total?: true
+  totalVenta?: true
   metodoPago?: true
   estado?: true
   observaciones?: true
@@ -154,9 +154,9 @@ export type VentaCountAggregateInputType = {
   usuarioId?: true
   clienteId?: true
   fecha?: true
-  subtotal?: true
+  subtotalVenta?: true
   descuento?: true
-  total?: true
+  totalVenta?: true
   metodoPago?: true
   estado?: true
   observaciones?: true
@@ -257,9 +257,9 @@ export type VentaGroupByOutputType = {
   usuarioId: number
   clienteId: number | null
   fecha: Date
-  subtotal: runtime.Decimal
+  subtotalVenta: runtime.Decimal
   descuento: runtime.Decimal
-  total: runtime.Decimal
+  totalVenta: runtime.Decimal
   metodoPago: $Enums.MetodoPago
   estado: $Enums.EstadoVenta
   observaciones: string | null
@@ -296,9 +296,9 @@ export type VentaWhereInput = {
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
-  subtotal?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFilter<"Venta"> | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFilter<"Venta"> | $Enums.EstadoVenta
   observaciones?: Prisma.StringNullableFilter<"Venta"> | string | null
@@ -316,9 +316,9 @@ export type VentaOrderByWithRelationInput = {
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
   fecha?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
   metodoPago?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -339,9 +339,9 @@ export type VentaWhereUniqueInput = Prisma.AtLeast<{
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
-  subtotal?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFilter<"Venta"> | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFilter<"Venta"> | $Enums.EstadoVenta
   observaciones?: Prisma.StringNullableFilter<"Venta"> | string | null
@@ -359,9 +359,9 @@ export type VentaOrderByWithAggregationInput = {
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
   fecha?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
   metodoPago?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -383,9 +383,9 @@ export type VentaScalarWhereWithAggregatesInput = {
   usuarioId?: Prisma.IntWithAggregatesFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableWithAggregatesFilter<"Venta"> | number | null
   fecha?: Prisma.DateTimeWithAggregatesFilter<"Venta"> | Date | string
-  subtotal?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoWithAggregatesFilter<"Venta"> | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaWithAggregatesFilter<"Venta"> | $Enums.EstadoVenta
   observaciones?: Prisma.StringNullableWithAggregatesFilter<"Venta"> | string | null
@@ -395,9 +395,9 @@ export type VentaScalarWhereWithAggregatesInput = {
 
 export type VentaCreateInput = {
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -415,9 +415,9 @@ export type VentaUncheckedCreateInput = {
   usuarioId: number
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -428,9 +428,9 @@ export type VentaUncheckedCreateInput = {
 
 export type VentaUpdateInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -448,9 +448,9 @@ export type VentaUncheckedUpdateInput = {
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -465,9 +465,9 @@ export type VentaCreateManyInput = {
   usuarioId: number
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -477,9 +477,9 @@ export type VentaCreateManyInput = {
 
 export type VentaUpdateManyMutationInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -493,9 +493,9 @@ export type VentaUncheckedUpdateManyInput = {
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -519,9 +519,9 @@ export type VentaCountOrderByAggregateInput = {
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
   metodoPago?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   observaciones?: Prisma.SortOrder
@@ -534,9 +534,9 @@ export type VentaAvgOrderByAggregateInput = {
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
 }
 
 export type VentaMaxOrderByAggregateInput = {
@@ -545,9 +545,9 @@ export type VentaMaxOrderByAggregateInput = {
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
   metodoPago?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   observaciones?: Prisma.SortOrder
@@ -561,9 +561,9 @@ export type VentaMinOrderByAggregateInput = {
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
   metodoPago?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   observaciones?: Prisma.SortOrder
@@ -576,9 +576,9 @@ export type VentaSumOrderByAggregateInput = {
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
-  subtotal?: Prisma.SortOrder
+  subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
-  total?: Prisma.SortOrder
+  totalVenta?: Prisma.SortOrder
 }
 
 export type VentaScalarRelationFilter = {
@@ -732,9 +732,9 @@ export type VentaUpdateOneRequiredWithoutDetallesNestedInput = {
 
 export type VentaCreateWithoutUsuarioInput = {
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -750,9 +750,9 @@ export type VentaUncheckedCreateWithoutUsuarioInput = {
   cajaId?: number | null
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -796,9 +796,9 @@ export type VentaScalarWhereInput = {
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
-  subtotal?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFilter<"Venta"> | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFilter<"Venta"> | $Enums.EstadoVenta
   observaciones?: Prisma.StringNullableFilter<"Venta"> | string | null
@@ -808,9 +808,9 @@ export type VentaScalarWhereInput = {
 
 export type VentaCreateWithoutClienteInput = {
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -826,9 +826,9 @@ export type VentaUncheckedCreateWithoutClienteInput = {
   cajaId?: number | null
   usuarioId: number
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -865,9 +865,9 @@ export type VentaUpdateManyWithWhereWithoutClienteInput = {
 
 export type VentaCreateWithoutCajaInput = {
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -883,9 +883,9 @@ export type VentaUncheckedCreateWithoutCajaInput = {
   usuarioId: number
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -922,9 +922,9 @@ export type VentaUpdateManyWithWhereWithoutCajaInput = {
 
 export type VentaCreateWithoutDetallesInput = {
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -941,9 +941,9 @@ export type VentaUncheckedCreateWithoutDetallesInput = {
   usuarioId: number
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -969,9 +969,9 @@ export type VentaUpdateToOneWithWhereWithoutDetallesInput = {
 
 export type VentaUpdateWithoutDetallesInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -988,9 +988,9 @@ export type VentaUncheckedUpdateWithoutDetallesInput = {
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1003,9 +1003,9 @@ export type VentaCreateManyUsuarioInput = {
   cajaId?: number | null
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -1015,9 +1015,9 @@ export type VentaCreateManyUsuarioInput = {
 
 export type VentaUpdateWithoutUsuarioInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1033,9 +1033,9 @@ export type VentaUncheckedUpdateWithoutUsuarioInput = {
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1049,9 +1049,9 @@ export type VentaUncheckedUpdateManyWithoutUsuarioInput = {
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1064,9 +1064,9 @@ export type VentaCreateManyClienteInput = {
   cajaId?: number | null
   usuarioId: number
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -1076,9 +1076,9 @@ export type VentaCreateManyClienteInput = {
 
 export type VentaUpdateWithoutClienteInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1094,9 +1094,9 @@ export type VentaUncheckedUpdateWithoutClienteInput = {
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1110,9 +1110,9 @@ export type VentaUncheckedUpdateManyWithoutClienteInput = {
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1125,9 +1125,9 @@ export type VentaCreateManyCajaInput = {
   usuarioId: number
   clienteId?: number | null
   fecha?: Date | string
-  subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago: $Enums.MetodoPago
   estado?: $Enums.EstadoVenta
   observaciones?: string | null
@@ -1137,9 +1137,9 @@ export type VentaCreateManyCajaInput = {
 
 export type VentaUpdateWithoutCajaInput = {
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1155,9 +1155,9 @@ export type VentaUncheckedUpdateWithoutCajaInput = {
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1171,9 +1171,9 @@ export type VentaUncheckedUpdateManyWithoutCajaInput = {
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
   estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1218,9 +1218,9 @@ export type VentaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   usuarioId?: boolean
   clienteId?: boolean
   fecha?: boolean
-  subtotal?: boolean
+  subtotalVenta?: boolean
   descuento?: boolean
-  total?: boolean
+  totalVenta?: boolean
   metodoPago?: boolean
   estado?: boolean
   observaciones?: boolean
@@ -1239,9 +1239,9 @@ export type VentaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   usuarioId?: boolean
   clienteId?: boolean
   fecha?: boolean
-  subtotal?: boolean
+  subtotalVenta?: boolean
   descuento?: boolean
-  total?: boolean
+  totalVenta?: boolean
   metodoPago?: boolean
   estado?: boolean
   observaciones?: boolean
@@ -1258,9 +1258,9 @@ export type VentaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   usuarioId?: boolean
   clienteId?: boolean
   fecha?: boolean
-  subtotal?: boolean
+  subtotalVenta?: boolean
   descuento?: boolean
-  total?: boolean
+  totalVenta?: boolean
   metodoPago?: boolean
   estado?: boolean
   observaciones?: boolean
@@ -1277,9 +1277,9 @@ export type VentaSelectScalar = {
   usuarioId?: boolean
   clienteId?: boolean
   fecha?: boolean
-  subtotal?: boolean
+  subtotalVenta?: boolean
   descuento?: boolean
-  total?: boolean
+  totalVenta?: boolean
   metodoPago?: boolean
   estado?: boolean
   observaciones?: boolean
@@ -1287,7 +1287,7 @@ export type VentaSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type VentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cajaId" | "usuarioId" | "clienteId" | "fecha" | "subtotal" | "descuento" | "total" | "metodoPago" | "estado" | "observaciones" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["venta"]>
+export type VentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cajaId" | "usuarioId" | "clienteId" | "fecha" | "subtotalVenta" | "descuento" | "totalVenta" | "metodoPago" | "estado" | "observaciones" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["venta"]>
 export type VentaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
@@ -1320,9 +1320,9 @@ export type $VentaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     usuarioId: number
     clienteId: number | null
     fecha: Date
-    subtotal: runtime.Decimal
+    subtotalVenta: runtime.Decimal
     descuento: runtime.Decimal
-    total: runtime.Decimal
+    totalVenta: runtime.Decimal
     metodoPago: $Enums.MetodoPago
     estado: $Enums.EstadoVenta
     observaciones: string | null
@@ -1760,9 +1760,9 @@ export interface VentaFieldRefs {
   readonly usuarioId: Prisma.FieldRef<"Venta", 'Int'>
   readonly clienteId: Prisma.FieldRef<"Venta", 'Int'>
   readonly fecha: Prisma.FieldRef<"Venta", 'DateTime'>
-  readonly subtotal: Prisma.FieldRef<"Venta", 'Decimal'>
+  readonly subtotalVenta: Prisma.FieldRef<"Venta", 'Decimal'>
   readonly descuento: Prisma.FieldRef<"Venta", 'Decimal'>
-  readonly total: Prisma.FieldRef<"Venta", 'Decimal'>
+  readonly totalVenta: Prisma.FieldRef<"Venta", 'Decimal'>
   readonly metodoPago: Prisma.FieldRef<"Venta", 'MetodoPago'>
   readonly estado: Prisma.FieldRef<"Venta", 'EstadoVenta'>
   readonly observaciones: Prisma.FieldRef<"Venta", 'String'>

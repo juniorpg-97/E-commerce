@@ -1,0 +1,372 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"  
+}
+
+enum Rol {
+  ADMINISTRADOR
+  CAJERO
+  CLIENTE
+}
+
+enum TipoDescuento {
+  TEMPORADA
+  LIQUIDACION
+  CUPON
+  CUMPLEAÑOS
+}
+
+enum TipoMovimiento {
+  ENTRADA
+  VENTA
+  MERMA
+  AJUSTE
+  DEVOLUCION
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  PAGADO
+  EN_PREPARACION
+  EN_CAMINO
+  ENTREGADO
+  CANCELADO
+}
+
+enum EstadoVenta {
+  COMPLETADA
+  ANULADA
+}
+
+enum MetodoPago {
+  EFECTIVO
+  TARJETA
+  TRANSFERENCIA
+  YAPE
+  PLIN
+  OTRO
+}
+
+enum EstadoCaja {
+  ABIERTA
+  CERRADA
+}
+
+// ======================================================
+// 1. USUARIO
+// ======================================================
+
+model Usuario {
+  id            Int      @id @default(autoincrement())
+  nombre        String
+  apellido      String
+  email         String   @unique
+  password      String
+  rol           Rol      @default(CLIENTE)
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  cliente     Cliente?
+  cajas       Caja[]
+  ventas      Venta[]
+  movimientos MovimientoInventario[]
+}
+
+// ======================================================
+// 2. CLIENTE
+// ======================================================
+
+model Cliente {
+  id            Int      @id @default(autoincrement())
+  usuarioId     Int      @unique
+  nombre        String
+  apellido      String
+  email         String   @unique
+  telefono      String?
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  usuario     Usuario     @relation(fields: [usuarioId], references: [id])
+  direcciones Direccion[]
+  carritos    Carrito[]
+  pedidos     Pedido[]
+  ventas      Venta[]
+}
+
+// ======================================================
+// 3. DIRECCIÓN
+// ======================================================
+
+model Direccion {
+  id            Int      @id @default(autoincrement())
+  clienteId     Int
+  calle         String
+  numero        String
+  referencia    String?
+  ciudad        String
+  codigoPostal  String
+  activa        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  cliente Cliente  @relation(fields: [clienteId], references: [id])
+  pedidos Pedido[]
+}
+
+// ======================================================
+// 4. CATEGORÍA
+// ======================================================
+
+model Categoria {
+  id            Int      @id @default(autoincrement())
+  nombre        String   @unique
+  descripcion   String?  @db.Text
+  activa        Boolean  @default(true)
+  creadoEn      DateTime @default(now())   
+  actualizadoEn DateTime @updatedAt
+
+  productos Producto[]
+}
+
+// ======================================================
+// 5. PRODUCTO
+// ======================================================
+
+model Producto {
+  id               Int      @id @default(autoincrement())
+  categoriaId      Int
+  nombre           String
+  descripcion      String?
+  costoAdquisicion Decimal  @db.Decimal(10, 2)
+  precioVenta      Decimal  @db.Decimal(10, 2)
+  activo           Boolean  @default(true)
+  creadoEn         DateTime @default(now())
+  actualizadoEn    DateTime @updatedAt
+
+  categoria       Categoria           @relation(fields: [categoriaId], references: [id])
+  inventario      Inventario?
+  descuentos      ProductoDescuento[]
+  detallesCarrito DetalleCarrito[]
+  detallesPedido  DetallePedido[]
+  detallesVenta   DetalleVenta[]
+}
+
+// ======================================================
+// 6. INVENTARIO
+// ======================================================
+
+model Inventario {
+  id            Int      @id @default(autoincrement())
+  productoId    Int      @unique
+  stock         Int      @default(0)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  producto    Producto               @relation(fields: [productoId], references: [id])
+  movimientos MovimientoInventario[]
+}
+
+// ======================================================
+// 7. MOVIMIENTO DE INVENTARIO
+// ======================================================
+
+model MovimientoInventario {
+  id             Int            @id @default(autoincrement())
+  inventarioId   Int
+  usuarioId      Int?
+  detalleVentaId Int?
+  tipo           TipoMovimiento
+  cantidad       Int
+  motivo         String?
+  referencia     String?
+  fecha          DateTime       @default(now())
+  creadoEn       DateTime       @default(now())
+
+  inventario   Inventario    @relation(fields: [inventarioId], references: [id])
+  usuario      Usuario?      @relation(fields: [usuarioId], references: [id])
+  detalleVenta DetalleVenta? @relation(fields: [detalleVentaId], references: [id])
+}
+
+// ======================================================
+// 8. DESCUENTO
+// ======================================================
+
+model Descuento {
+  id            Int           @id @default(autoincrement())
+  nombre        String
+  descripcion   String?
+  tipo          TipoDescuento
+  porcentaje    Decimal?      @db.Decimal(5, 2)
+  monto         Decimal?      @db.Decimal(10, 2)
+  fechaInicio   DateTime
+  fechaFin      DateTime
+  activo        Boolean       @default(true)
+  creadoEn      DateTime      @default(now())
+  actualizadoEn DateTime      @updatedAt
+
+  productos ProductoDescuento[]
+}
+
+// ======================================================
+// 9. PRODUCTO_DESCUENTO
+// Tabla intermedia para relación N:M
+// ======================================================
+
+model ProductoDescuento {
+  id            Int      @id @default(autoincrement())
+  productoId    Int
+  descuentoId   Int
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  producto  Producto  @relation(fields: [productoId], references: [id])
+  descuento Descuento @relation(fields: [descuentoId], references: [id])
+
+  @@unique([productoId, descuentoId])
+}
+
+// ======================================================
+// 10. CARRITO
+// ======================================================
+
+model Carrito {
+  id            Int      @id @default(autoincrement())
+  clienteId     Int
+  activo        Boolean  @default(true)
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  cliente  Cliente          @relation(fields: [clienteId], references: [id])
+  detalles DetalleCarrito[]
+}
+
+// ======================================================
+// 11. DETALLE CARRITO
+// ======================================================
+
+model DetalleCarrito {
+  id             Int      @id @default(autoincrement())
+  carritoId      Int
+  productoId     Int
+  cantidad       Int
+  precioUnitario Decimal  @db.Decimal(10, 2)
+  creadoEn       DateTime @default(now())
+  actualizadoEn  DateTime @updatedAt
+
+  carrito  Carrito  @relation(fields: [carritoId], references: [id])
+  producto Producto @relation(fields: [productoId], references: [id])
+
+  @@unique([carritoId, productoId])
+}
+
+// ======================================================
+// 12. PEDIDO
+// ======================================================
+
+model Pedido {
+  id            Int          @id @default(autoincrement())
+  clienteId     Int
+  direccionId   Int
+  estado        EstadoPedido @default(PENDIENTE)
+  total         Decimal      @db.Decimal(10, 2)
+  metodoPago    MetodoPago
+  observaciones String?
+  creadoEn      DateTime     @default(now())
+  actualizadoEn DateTime     @updatedAt
+
+  cliente   Cliente         @relation(fields: [clienteId], references: [id])
+  direccion Direccion       @relation(fields: [direccionId], references: [id])
+  detalles  DetallePedido[]
+}
+
+// ======================================================
+// 13. DETALLE PEDIDO
+// ======================================================
+
+model DetallePedido {
+  id             Int      @id @default(autoincrement())
+  pedidoId       Int
+  productoId     Int
+  cantidad       Int
+  precioUnitario Decimal  @db.Decimal(10, 2)
+  descuento      Decimal  @default(0) @db.Decimal(10, 2)
+  subtotal       Decimal  @db.Decimal(10, 2)
+  creadoEn       DateTime @default(now())
+  actualizadoEn  DateTime @updatedAt
+
+  pedido   Pedido   @relation(fields: [pedidoId], references: [id])
+  producto Producto @relation(fields: [productoId], references: [id])
+}
+
+// ======================================================
+// 14. CAJA
+// ======================================================
+
+model Caja {
+  id            Int        @id @default(autoincrement())
+  usuarioId     Int
+  fechaApertura DateTime
+  fechaCierre   DateTime?
+  montoInicial  Decimal    @db.Decimal(10, 2)
+  montoEsperado Decimal?   @db.Decimal(10, 2)
+  montoContado  Decimal?   @db.Decimal(10, 2)
+  diferencia    Decimal?   @db.Decimal(10, 2)
+  estado        EstadoCaja @default(ABIERTA)
+  creadoEn      DateTime   @default(now())
+  actualizadoEn DateTime   @updatedAt
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  ventas  Venta[]
+}
+
+// ======================================================
+// 15. VENTA
+// ======================================================
+
+model Venta {
+  id            Int         @id @default(autoincrement())
+  cajaId        Int?
+  usuarioId     Int
+  clienteId     Int?
+  fecha         DateTime    @default(now())
+  subtotal      Decimal     @db.Decimal(10, 2)
+  descuento     Decimal     @default(0) @db.Decimal(10, 2)
+  total         Decimal     @db.Decimal(10, 2)
+  metodoPago    MetodoPago
+  estado        EstadoVenta @default(COMPLETADA)
+  observaciones String?
+  creadoEn      DateTime    @default(now())
+  actualizadoEn DateTime    @updatedAt
+
+  caja     Caja?          @relation(fields: [cajaId], references: [id])
+  usuario  Usuario        @relation(fields: [usuarioId], references: [id])
+  cliente  Cliente?       @relation(fields: [clienteId], references: [id])
+  detalles DetalleVenta[]
+}
+
+// ======================================================
+// 16. DETALLE VENTA
+// ======================================================
+
+model DetalleVenta {
+  id             Int      @id @default(autoincrement())
+  ventaId        Int
+  productoId     Int
+  cantidad       Int
+  precioUnitario Decimal  @db.Decimal(10, 2)
+  descuento      Decimal  @default(0) @db.Decimal(10, 2)
+  subtotal       Decimal  @db.Decimal(10, 2)
+  creadoEn       DateTime @default(now())
+  actualizadoEn  DateTime @updatedAt
+
+  venta       Venta                  @relation(fields: [ventaId], references: [id])
+  producto    Producto               @relation(fields: [productoId], references: [id])
+  movimientos MovimientoInventario[]
+}

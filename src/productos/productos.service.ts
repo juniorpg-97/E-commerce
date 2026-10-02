@@ -56,11 +56,23 @@ export class ProductosService {
 
   async findAll(rol: string, categoriaId?: string) {
     const productos = await this.prisma.producto.findMany({
-      where: categoriaId
-        ? {
-            categoriaId: Number(categoriaId),
-          }
-        : undefined,
+      where: {
+        ...(categoriaId
+          ? {
+              categoriaId: Number(categoriaId),
+            }
+          : {}),
+        ...(rol === 'CLIENTE'
+          ? {
+              activo: true,
+              inventario: {
+                stock: {
+                  gt: 0,
+                },
+              },
+            }
+          : {}),
+      },
       orderBy: {
         id: 'asc',
       },
@@ -96,6 +108,7 @@ export class ProductosService {
       const { costoAdquisicion, ...productoSinCosto } = producto;
       return productoSinCosto;
     }
+
     return producto;
   }
 

@@ -1857,9 +1857,11 @@ export type CajaScalarFieldEnum = (typeof CajaScalarFieldEnum)[keyof typeof Caja
 
 export const VentaScalarFieldEnum = {
   id: 'id',
+  pedidoId: 'pedidoId',
   cajaId: 'cajaId',
   usuarioId: 'usuarioId',
   clienteId: 'clienteId',
+  tipo: 'tipo',
   fecha: 'fecha',
   subtotalVenta: 'subtotalVenta',
   descuento: 'descuento',
@@ -2062,6 +2064,20 @@ export type EnumEstadoCajaFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'EstadoCaja[]'
  */
 export type ListEnumEstadoCajaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoCaja[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoVenta'
+ */
+export type EnumTipoVentaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoVenta'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoVenta[]'
+ */
+export type ListEnumTipoVentaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoVenta[]'>
     
 
 

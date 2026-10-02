@@ -13,6 +13,12 @@ import { VentasModule } from './ventas/ventas.module.js';
 import { DetalleVentaModule } from './detalle-venta/detalle-venta.module.js';
 import { CajasModule } from './cajas/cajas.module.js';
 import { CarritosModule } from './carritos/carritos.module.js';
+import { ClientesModule } from './clientes/clientes.module.js';
+import { PedidosModule } from './pedidos/pedidos.module.js';
+import { DetallePedidoModule } from './detalle-pedido/detalle-pedido.module.js';
+import { DireccionesModule } from './direcciones/direcciones.module.js';
+import { InventarioModule } from './inventario/inventario.module.js';
+import { MovimientosInventarioModule } from './movimientos-inventario/movimientos-inventario.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -37,6 +43,12 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     DetalleVentaModule,
     CajasModule,
     CarritosModule,
+    ClientesModule,
+    PedidosModule,
+    DetallePedidoModule,
+    DireccionesModule,
+    InventarioModule,
+    MovimientosInventarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

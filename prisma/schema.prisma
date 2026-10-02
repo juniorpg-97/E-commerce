@@ -56,6 +56,13 @@ enum EstadoCaja {
   CERRADA
 }
 
+enum TipoVenta {
+  POS
+  REDES_SOCIALES
+  WEB
+}
+
+
 // ======================================================
 // 1. USUARIO
 // ======================================================
@@ -284,6 +291,7 @@ model Pedido {
   cliente   Cliente         @relation(fields: [clienteId], references: [id])
   direccion Direccion       @relation(fields: [direccionId], references: [id])
   detalles  DetallePedido[]
+  venta     Venta?
 }
 
 // ======================================================
@@ -332,9 +340,11 @@ model Caja {
 
 model Venta {
   id            Int         @id @default(autoincrement())
+  pedidoId      Int?        @unique
   cajaId        Int?
   usuarioId     Int
   clienteId     Int?
+  tipo          TipoVenta   @default(POS)
   fecha         DateTime    @default(now())
   subtotalVenta Decimal     @db.Decimal(10, 2)
   descuento     Decimal     @default(0) @db.Decimal(10, 2)
@@ -345,6 +355,7 @@ model Venta {
   creadoEn      DateTime    @default(now())
   actualizadoEn DateTime    @updatedAt
 
+  pedido   Pedido?        @relation(fields: [pedidoId], references: [id])
   caja     Caja?          @relation(fields: [cajaId], references: [id])
   usuario  Usuario        @relation(fields: [usuarioId], references: [id])
   cliente  Cliente?       @relation(fields: [clienteId], references: [id])

@@ -358,11 +358,28 @@ export type EnumEstadoCajaWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>
 }
 
+export type EnumTipoVentaFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel> | $Enums.TipoVenta
+}
+
 export type EnumEstadoVentaFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel> | $Enums.EstadoVenta
+}
+
+export type EnumTipoVentaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel> | $Enums.TipoVenta
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>
 }
 
 export type EnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {
@@ -732,11 +749,28 @@ export type NestedEnumEstadoCajaWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>
 }
 
+export type NestedEnumTipoVentaFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel> | $Enums.TipoVenta
+}
+
 export type NestedEnumEstadoVentaFilter<$PrismaModel = never> = {
   equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>
   in?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel> | $Enums.EstadoVenta
+}
+
+export type NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel> | $Enums.TipoVenta
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>
 }
 
 export type NestedEnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {

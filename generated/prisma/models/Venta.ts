@@ -28,6 +28,7 @@ export type AggregateVenta = {
 
 export type VentaAvgAggregateOutputType = {
   id: number | null
+  pedidoId: number | null
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
@@ -38,6 +39,7 @@ export type VentaAvgAggregateOutputType = {
 
 export type VentaSumAggregateOutputType = {
   id: number | null
+  pedidoId: number | null
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
@@ -48,9 +50,11 @@ export type VentaSumAggregateOutputType = {
 
 export type VentaMinAggregateOutputType = {
   id: number | null
+  pedidoId: number | null
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
+  tipo: $Enums.TipoVenta | null
   fecha: Date | null
   subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
@@ -64,9 +68,11 @@ export type VentaMinAggregateOutputType = {
 
 export type VentaMaxAggregateOutputType = {
   id: number | null
+  pedidoId: number | null
   cajaId: number | null
   usuarioId: number | null
   clienteId: number | null
+  tipo: $Enums.TipoVenta | null
   fecha: Date | null
   subtotalVenta: runtime.Decimal | null
   descuento: runtime.Decimal | null
@@ -80,9 +86,11 @@ export type VentaMaxAggregateOutputType = {
 
 export type VentaCountAggregateOutputType = {
   id: number
+  pedidoId: number
   cajaId: number
   usuarioId: number
   clienteId: number
+  tipo: number
   fecha: number
   subtotalVenta: number
   descuento: number
@@ -98,6 +106,7 @@ export type VentaCountAggregateOutputType = {
 
 export type VentaAvgAggregateInputType = {
   id?: true
+  pedidoId?: true
   cajaId?: true
   usuarioId?: true
   clienteId?: true
@@ -108,6 +117,7 @@ export type VentaAvgAggregateInputType = {
 
 export type VentaSumAggregateInputType = {
   id?: true
+  pedidoId?: true
   cajaId?: true
   usuarioId?: true
   clienteId?: true
@@ -118,9 +128,11 @@ export type VentaSumAggregateInputType = {
 
 export type VentaMinAggregateInputType = {
   id?: true
+  pedidoId?: true
   cajaId?: true
   usuarioId?: true
   clienteId?: true
+  tipo?: true
   fecha?: true
   subtotalVenta?: true
   descuento?: true
@@ -134,9 +146,11 @@ export type VentaMinAggregateInputType = {
 
 export type VentaMaxAggregateInputType = {
   id?: true
+  pedidoId?: true
   cajaId?: true
   usuarioId?: true
   clienteId?: true
+  tipo?: true
   fecha?: true
   subtotalVenta?: true
   descuento?: true
@@ -150,9 +164,11 @@ export type VentaMaxAggregateInputType = {
 
 export type VentaCountAggregateInputType = {
   id?: true
+  pedidoId?: true
   cajaId?: true
   usuarioId?: true
   clienteId?: true
+  tipo?: true
   fecha?: true
   subtotalVenta?: true
   descuento?: true
@@ -253,9 +269,11 @@ export type VentaGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type VentaGroupByOutputType = {
   id: number
+  pedidoId: number | null
   cajaId: number | null
   usuarioId: number
   clienteId: number | null
+  tipo: $Enums.TipoVenta
   fecha: Date
   subtotalVenta: runtime.Decimal
   descuento: runtime.Decimal
@@ -292,9 +310,11 @@ export type VentaWhereInput = {
   OR?: Prisma.VentaWhereInput[]
   NOT?: Prisma.VentaWhereInput | Prisma.VentaWhereInput[]
   id?: Prisma.IntFilter<"Venta"> | number
+  pedidoId?: Prisma.IntNullableFilter<"Venta"> | number | null
   cajaId?: Prisma.IntNullableFilter<"Venta"> | number | null
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
+  tipo?: Prisma.EnumTipoVentaFilter<"Venta"> | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
   subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -304,6 +324,7 @@ export type VentaWhereInput = {
   observaciones?: Prisma.StringNullableFilter<"Venta"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Venta"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Venta"> | Date | string
+  pedido?: Prisma.XOR<Prisma.PedidoNullableScalarRelationFilter, Prisma.PedidoWhereInput> | null
   caja?: Prisma.XOR<Prisma.CajaNullableScalarRelationFilter, Prisma.CajaWhereInput> | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.ClienteWhereInput> | null
@@ -312,9 +333,11 @@ export type VentaWhereInput = {
 
 export type VentaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrderInput | Prisma.SortOrder
   cajaId?: Prisma.SortOrderInput | Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
@@ -324,6 +347,7 @@ export type VentaOrderByWithRelationInput = {
   observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
   creadoEn?: Prisma.SortOrder
   actualizadoEn?: Prisma.SortOrder
+  pedido?: Prisma.PedidoOrderByWithRelationInput
   caja?: Prisma.CajaOrderByWithRelationInput
   usuario?: Prisma.UsuarioOrderByWithRelationInput
   cliente?: Prisma.ClienteOrderByWithRelationInput
@@ -332,12 +356,14 @@ export type VentaOrderByWithRelationInput = {
 
 export type VentaWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  pedidoId?: number
   AND?: Prisma.VentaWhereInput | Prisma.VentaWhereInput[]
   OR?: Prisma.VentaWhereInput[]
   NOT?: Prisma.VentaWhereInput | Prisma.VentaWhereInput[]
   cajaId?: Prisma.IntNullableFilter<"Venta"> | number | null
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
+  tipo?: Prisma.EnumTipoVentaFilter<"Venta"> | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
   subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -347,17 +373,20 @@ export type VentaWhereUniqueInput = Prisma.AtLeast<{
   observaciones?: Prisma.StringNullableFilter<"Venta"> | string | null
   creadoEn?: Prisma.DateTimeFilter<"Venta"> | Date | string
   actualizadoEn?: Prisma.DateTimeFilter<"Venta"> | Date | string
+  pedido?: Prisma.XOR<Prisma.PedidoNullableScalarRelationFilter, Prisma.PedidoWhereInput> | null
   caja?: Prisma.XOR<Prisma.CajaNullableScalarRelationFilter, Prisma.CajaWhereInput> | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   cliente?: Prisma.XOR<Prisma.ClienteNullableScalarRelationFilter, Prisma.ClienteWhereInput> | null
   detalles?: Prisma.DetalleVentaListRelationFilter
-}, "id">
+}, "id" | "pedidoId">
 
 export type VentaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrderInput | Prisma.SortOrder
   cajaId?: Prisma.SortOrderInput | Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
@@ -379,9 +408,11 @@ export type VentaScalarWhereWithAggregatesInput = {
   OR?: Prisma.VentaScalarWhereWithAggregatesInput[]
   NOT?: Prisma.VentaScalarWhereWithAggregatesInput | Prisma.VentaScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Venta"> | number
+  pedidoId?: Prisma.IntNullableWithAggregatesFilter<"Venta"> | number | null
   cajaId?: Prisma.IntNullableWithAggregatesFilter<"Venta"> | number | null
   usuarioId?: Prisma.IntWithAggregatesFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableWithAggregatesFilter<"Venta"> | number | null
+  tipo?: Prisma.EnumTipoVentaWithAggregatesFilter<"Venta"> | $Enums.TipoVenta
   fecha?: Prisma.DateTimeWithAggregatesFilter<"Venta"> | Date | string
   subtotalVenta?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalWithAggregatesFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -394,6 +425,7 @@ export type VentaScalarWhereWithAggregatesInput = {
 }
 
 export type VentaCreateInput = {
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -403,6 +435,7 @@ export type VentaCreateInput = {
   observaciones?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  pedido?: Prisma.PedidoCreateNestedOneWithoutVentaInput
   caja?: Prisma.CajaCreateNestedOneWithoutVentasInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutVentasInput
   cliente?: Prisma.ClienteCreateNestedOneWithoutVentasInput
@@ -411,9 +444,11 @@ export type VentaCreateInput = {
 
 export type VentaUncheckedCreateInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   usuarioId: number
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -427,6 +462,7 @@ export type VentaUncheckedCreateInput = {
 }
 
 export type VentaUpdateInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -436,6 +472,7 @@ export type VentaUpdateInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pedido?: Prisma.PedidoUpdateOneWithoutVentaNestedInput
   caja?: Prisma.CajaUpdateOneWithoutVentasNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutVentasNestedInput
   cliente?: Prisma.ClienteUpdateOneWithoutVentasNestedInput
@@ -444,9 +481,11 @@ export type VentaUpdateInput = {
 
 export type VentaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -461,9 +500,11 @@ export type VentaUncheckedUpdateInput = {
 
 export type VentaCreateManyInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   usuarioId: number
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -476,6 +517,7 @@ export type VentaCreateManyInput = {
 }
 
 export type VentaUpdateManyMutationInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -489,9 +531,11 @@ export type VentaUpdateManyMutationInput = {
 
 export type VentaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -513,11 +557,18 @@ export type VentaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type VentaNullableScalarRelationFilter = {
+  is?: Prisma.VentaWhereInput | null
+  isNot?: Prisma.VentaWhereInput | null
+}
+
 export type VentaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrder
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
@@ -531,6 +582,7 @@ export type VentaCountOrderByAggregateInput = {
 
 export type VentaAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrder
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
@@ -541,9 +593,11 @@ export type VentaAvgOrderByAggregateInput = {
 
 export type VentaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrder
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
@@ -557,9 +611,11 @@ export type VentaMaxOrderByAggregateInput = {
 
 export type VentaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrder
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
   subtotalVenta?: Prisma.SortOrder
   descuento?: Prisma.SortOrder
@@ -573,6 +629,7 @@ export type VentaMinOrderByAggregateInput = {
 
 export type VentaSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  pedidoId?: Prisma.SortOrder
   cajaId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
@@ -670,6 +727,38 @@ export type VentaUncheckedUpdateManyWithoutClienteNestedInput = {
   deleteMany?: Prisma.VentaScalarWhereInput | Prisma.VentaScalarWhereInput[]
 }
 
+export type VentaCreateNestedOneWithoutPedidoInput = {
+  create?: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+  connectOrCreate?: Prisma.VentaCreateOrConnectWithoutPedidoInput
+  connect?: Prisma.VentaWhereUniqueInput
+}
+
+export type VentaUncheckedCreateNestedOneWithoutPedidoInput = {
+  create?: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+  connectOrCreate?: Prisma.VentaCreateOrConnectWithoutPedidoInput
+  connect?: Prisma.VentaWhereUniqueInput
+}
+
+export type VentaUpdateOneWithoutPedidoNestedInput = {
+  create?: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+  connectOrCreate?: Prisma.VentaCreateOrConnectWithoutPedidoInput
+  upsert?: Prisma.VentaUpsertWithoutPedidoInput
+  disconnect?: Prisma.VentaWhereInput | boolean
+  delete?: Prisma.VentaWhereInput | boolean
+  connect?: Prisma.VentaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VentaUpdateToOneWithWhereWithoutPedidoInput, Prisma.VentaUpdateWithoutPedidoInput>, Prisma.VentaUncheckedUpdateWithoutPedidoInput>
+}
+
+export type VentaUncheckedUpdateOneWithoutPedidoNestedInput = {
+  create?: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+  connectOrCreate?: Prisma.VentaCreateOrConnectWithoutPedidoInput
+  upsert?: Prisma.VentaUpsertWithoutPedidoInput
+  disconnect?: Prisma.VentaWhereInput | boolean
+  delete?: Prisma.VentaWhereInput | boolean
+  connect?: Prisma.VentaWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VentaUpdateToOneWithWhereWithoutPedidoInput, Prisma.VentaUpdateWithoutPedidoInput>, Prisma.VentaUncheckedUpdateWithoutPedidoInput>
+}
+
 export type VentaCreateNestedManyWithoutCajaInput = {
   create?: Prisma.XOR<Prisma.VentaCreateWithoutCajaInput, Prisma.VentaUncheckedCreateWithoutCajaInput> | Prisma.VentaCreateWithoutCajaInput[] | Prisma.VentaUncheckedCreateWithoutCajaInput[]
   connectOrCreate?: Prisma.VentaCreateOrConnectWithoutCajaInput | Prisma.VentaCreateOrConnectWithoutCajaInput[]
@@ -712,6 +801,10 @@ export type VentaUncheckedUpdateManyWithoutCajaNestedInput = {
   deleteMany?: Prisma.VentaScalarWhereInput | Prisma.VentaScalarWhereInput[]
 }
 
+export type EnumTipoVentaFieldUpdateOperationsInput = {
+  set?: $Enums.TipoVenta
+}
+
 export type EnumEstadoVentaFieldUpdateOperationsInput = {
   set?: $Enums.EstadoVenta
 }
@@ -731,6 +824,7 @@ export type VentaUpdateOneRequiredWithoutDetallesNestedInput = {
 }
 
 export type VentaCreateWithoutUsuarioInput = {
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -740,6 +834,7 @@ export type VentaCreateWithoutUsuarioInput = {
   observaciones?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  pedido?: Prisma.PedidoCreateNestedOneWithoutVentaInput
   caja?: Prisma.CajaCreateNestedOneWithoutVentasInput
   cliente?: Prisma.ClienteCreateNestedOneWithoutVentasInput
   detalles?: Prisma.DetalleVentaCreateNestedManyWithoutVentaInput
@@ -747,8 +842,10 @@ export type VentaCreateWithoutUsuarioInput = {
 
 export type VentaUncheckedCreateWithoutUsuarioInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -792,9 +889,11 @@ export type VentaScalarWhereInput = {
   OR?: Prisma.VentaScalarWhereInput[]
   NOT?: Prisma.VentaScalarWhereInput | Prisma.VentaScalarWhereInput[]
   id?: Prisma.IntFilter<"Venta"> | number
+  pedidoId?: Prisma.IntNullableFilter<"Venta"> | number | null
   cajaId?: Prisma.IntNullableFilter<"Venta"> | number | null
   usuarioId?: Prisma.IntFilter<"Venta"> | number
   clienteId?: Prisma.IntNullableFilter<"Venta"> | number | null
+  tipo?: Prisma.EnumTipoVentaFilter<"Venta"> | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFilter<"Venta"> | Date | string
   subtotalVenta?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFilter<"Venta"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -807,6 +906,7 @@ export type VentaScalarWhereInput = {
 }
 
 export type VentaCreateWithoutClienteInput = {
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -816,6 +916,7 @@ export type VentaCreateWithoutClienteInput = {
   observaciones?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  pedido?: Prisma.PedidoCreateNestedOneWithoutVentaInput
   caja?: Prisma.CajaCreateNestedOneWithoutVentasInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutVentasInput
   detalles?: Prisma.DetalleVentaCreateNestedManyWithoutVentaInput
@@ -823,8 +924,10 @@ export type VentaCreateWithoutClienteInput = {
 
 export type VentaUncheckedCreateWithoutClienteInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   usuarioId: number
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -863,7 +966,8 @@ export type VentaUpdateManyWithWhereWithoutClienteInput = {
   data: Prisma.XOR<Prisma.VentaUpdateManyMutationInput, Prisma.VentaUncheckedUpdateManyWithoutClienteInput>
 }
 
-export type VentaCreateWithoutCajaInput = {
+export type VentaCreateWithoutPedidoInput = {
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -873,6 +977,93 @@ export type VentaCreateWithoutCajaInput = {
   observaciones?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  caja?: Prisma.CajaCreateNestedOneWithoutVentasInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutVentasInput
+  cliente?: Prisma.ClienteCreateNestedOneWithoutVentasInput
+  detalles?: Prisma.DetalleVentaCreateNestedManyWithoutVentaInput
+}
+
+export type VentaUncheckedCreateWithoutPedidoInput = {
+  id?: number
+  cajaId?: number | null
+  usuarioId: number
+  clienteId?: number | null
+  tipo?: $Enums.TipoVenta
+  fecha?: Date | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago: $Enums.MetodoPago
+  estado?: $Enums.EstadoVenta
+  observaciones?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  detalles?: Prisma.DetalleVentaUncheckedCreateNestedManyWithoutVentaInput
+}
+
+export type VentaCreateOrConnectWithoutPedidoInput = {
+  where: Prisma.VentaWhereUniqueInput
+  create: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+}
+
+export type VentaUpsertWithoutPedidoInput = {
+  update: Prisma.XOR<Prisma.VentaUpdateWithoutPedidoInput, Prisma.VentaUncheckedUpdateWithoutPedidoInput>
+  create: Prisma.XOR<Prisma.VentaCreateWithoutPedidoInput, Prisma.VentaUncheckedCreateWithoutPedidoInput>
+  where?: Prisma.VentaWhereInput
+}
+
+export type VentaUpdateToOneWithWhereWithoutPedidoInput = {
+  where?: Prisma.VentaWhereInput
+  data: Prisma.XOR<Prisma.VentaUpdateWithoutPedidoInput, Prisma.VentaUncheckedUpdateWithoutPedidoInput>
+}
+
+export type VentaUpdateWithoutPedidoInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+  estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  caja?: Prisma.CajaUpdateOneWithoutVentasNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutVentasNestedInput
+  cliente?: Prisma.ClienteUpdateOneWithoutVentasNestedInput
+  detalles?: Prisma.DetalleVentaUpdateManyWithoutVentaNestedInput
+}
+
+export type VentaUncheckedUpdateWithoutPedidoInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
+  fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+  estado?: Prisma.EnumEstadoVentaFieldUpdateOperationsInput | $Enums.EstadoVenta
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  detalles?: Prisma.DetalleVentaUncheckedUpdateManyWithoutVentaNestedInput
+}
+
+export type VentaCreateWithoutCajaInput = {
+  tipo?: $Enums.TipoVenta
+  fecha?: Date | string
+  subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
+  descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  totalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago: $Enums.MetodoPago
+  estado?: $Enums.EstadoVenta
+  observaciones?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  pedido?: Prisma.PedidoCreateNestedOneWithoutVentaInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutVentasInput
   cliente?: Prisma.ClienteCreateNestedOneWithoutVentasInput
   detalles?: Prisma.DetalleVentaCreateNestedManyWithoutVentaInput
@@ -880,8 +1071,10 @@ export type VentaCreateWithoutCajaInput = {
 
 export type VentaUncheckedCreateWithoutCajaInput = {
   id?: number
+  pedidoId?: number | null
   usuarioId: number
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -921,6 +1114,7 @@ export type VentaUpdateManyWithWhereWithoutCajaInput = {
 }
 
 export type VentaCreateWithoutDetallesInput = {
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -930,6 +1124,7 @@ export type VentaCreateWithoutDetallesInput = {
   observaciones?: string | null
   creadoEn?: Date | string
   actualizadoEn?: Date | string
+  pedido?: Prisma.PedidoCreateNestedOneWithoutVentaInput
   caja?: Prisma.CajaCreateNestedOneWithoutVentasInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutVentasInput
   cliente?: Prisma.ClienteCreateNestedOneWithoutVentasInput
@@ -937,9 +1132,11 @@ export type VentaCreateWithoutDetallesInput = {
 
 export type VentaUncheckedCreateWithoutDetallesInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   usuarioId: number
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -968,6 +1165,7 @@ export type VentaUpdateToOneWithWhereWithoutDetallesInput = {
 }
 
 export type VentaUpdateWithoutDetallesInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -977,6 +1175,7 @@ export type VentaUpdateWithoutDetallesInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pedido?: Prisma.PedidoUpdateOneWithoutVentaNestedInput
   caja?: Prisma.CajaUpdateOneWithoutVentasNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutVentasNestedInput
   cliente?: Prisma.ClienteUpdateOneWithoutVentasNestedInput
@@ -984,9 +1183,11 @@ export type VentaUpdateWithoutDetallesInput = {
 
 export type VentaUncheckedUpdateWithoutDetallesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1000,8 +1201,10 @@ export type VentaUncheckedUpdateWithoutDetallesInput = {
 
 export type VentaCreateManyUsuarioInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1014,6 +1217,7 @@ export type VentaCreateManyUsuarioInput = {
 }
 
 export type VentaUpdateWithoutUsuarioInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1023,6 +1227,7 @@ export type VentaUpdateWithoutUsuarioInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pedido?: Prisma.PedidoUpdateOneWithoutVentaNestedInput
   caja?: Prisma.CajaUpdateOneWithoutVentasNestedInput
   cliente?: Prisma.ClienteUpdateOneWithoutVentasNestedInput
   detalles?: Prisma.DetalleVentaUpdateManyWithoutVentaNestedInput
@@ -1030,8 +1235,10 @@ export type VentaUpdateWithoutUsuarioInput = {
 
 export type VentaUncheckedUpdateWithoutUsuarioInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1046,8 +1253,10 @@ export type VentaUncheckedUpdateWithoutUsuarioInput = {
 
 export type VentaUncheckedUpdateManyWithoutUsuarioInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1061,8 +1270,10 @@ export type VentaUncheckedUpdateManyWithoutUsuarioInput = {
 
 export type VentaCreateManyClienteInput = {
   id?: number
+  pedidoId?: number | null
   cajaId?: number | null
   usuarioId: number
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1075,6 +1286,7 @@ export type VentaCreateManyClienteInput = {
 }
 
 export type VentaUpdateWithoutClienteInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1084,6 +1296,7 @@ export type VentaUpdateWithoutClienteInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pedido?: Prisma.PedidoUpdateOneWithoutVentaNestedInput
   caja?: Prisma.CajaUpdateOneWithoutVentasNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutVentasNestedInput
   detalles?: Prisma.DetalleVentaUpdateManyWithoutVentaNestedInput
@@ -1091,8 +1304,10 @@ export type VentaUpdateWithoutClienteInput = {
 
 export type VentaUncheckedUpdateWithoutClienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1107,8 +1322,10 @@ export type VentaUncheckedUpdateWithoutClienteInput = {
 
 export type VentaUncheckedUpdateManyWithoutClienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   cajaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1122,8 +1339,10 @@ export type VentaUncheckedUpdateManyWithoutClienteInput = {
 
 export type VentaCreateManyCajaInput = {
   id?: number
+  pedidoId?: number | null
   usuarioId: number
   clienteId?: number | null
+  tipo?: $Enums.TipoVenta
   fecha?: Date | string
   subtotalVenta: runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1136,6 +1355,7 @@ export type VentaCreateManyCajaInput = {
 }
 
 export type VentaUpdateWithoutCajaInput = {
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1145,6 +1365,7 @@ export type VentaUpdateWithoutCajaInput = {
   observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pedido?: Prisma.PedidoUpdateOneWithoutVentaNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutVentasNestedInput
   cliente?: Prisma.ClienteUpdateOneWithoutVentasNestedInput
   detalles?: Prisma.DetalleVentaUpdateManyWithoutVentaNestedInput
@@ -1152,8 +1373,10 @@ export type VentaUpdateWithoutCajaInput = {
 
 export type VentaUncheckedUpdateWithoutCajaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1168,8 +1391,10 @@ export type VentaUncheckedUpdateWithoutCajaInput = {
 
 export type VentaUncheckedUpdateManyWithoutCajaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   clienteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tipo?: Prisma.EnumTipoVentaFieldUpdateOperationsInput | $Enums.TipoVenta
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subtotalVenta?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   descuento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1214,9 +1439,11 @@ export type VentaCountOutputTypeCountDetallesArgs<ExtArgs extends runtime.Types.
 
 export type VentaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  pedidoId?: boolean
   cajaId?: boolean
   usuarioId?: boolean
   clienteId?: boolean
+  tipo?: boolean
   fecha?: boolean
   subtotalVenta?: boolean
   descuento?: boolean
@@ -1226,6 +1453,7 @@ export type VentaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   observaciones?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
@@ -1235,9 +1463,11 @@ export type VentaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type VentaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  pedidoId?: boolean
   cajaId?: boolean
   usuarioId?: boolean
   clienteId?: boolean
+  tipo?: boolean
   fecha?: boolean
   subtotalVenta?: boolean
   descuento?: boolean
@@ -1247,6 +1477,7 @@ export type VentaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   observaciones?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
@@ -1254,9 +1485,11 @@ export type VentaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type VentaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  pedidoId?: boolean
   cajaId?: boolean
   usuarioId?: boolean
   clienteId?: boolean
+  tipo?: boolean
   fecha?: boolean
   subtotalVenta?: boolean
   descuento?: boolean
@@ -1266,6 +1499,7 @@ export type VentaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   observaciones?: boolean
   creadoEn?: boolean
   actualizadoEn?: boolean
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
@@ -1273,9 +1507,11 @@ export type VentaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type VentaSelectScalar = {
   id?: boolean
+  pedidoId?: boolean
   cajaId?: boolean
   usuarioId?: boolean
   clienteId?: boolean
+  tipo?: boolean
   fecha?: boolean
   subtotalVenta?: boolean
   descuento?: boolean
@@ -1287,8 +1523,9 @@ export type VentaSelectScalar = {
   actualizadoEn?: boolean
 }
 
-export type VentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cajaId" | "usuarioId" | "clienteId" | "fecha" | "subtotalVenta" | "descuento" | "totalVenta" | "metodoPago" | "estado" | "observaciones" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["venta"]>
+export type VentaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pedidoId" | "cajaId" | "usuarioId" | "clienteId" | "tipo" | "fecha" | "subtotalVenta" | "descuento" | "totalVenta" | "metodoPago" | "estado" | "observaciones" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["venta"]>
 export type VentaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
@@ -1296,11 +1533,13 @@ export type VentaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   _count?: boolean | Prisma.VentaCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VentaIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
 }
 export type VentaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pedido?: boolean | Prisma.Venta$pedidoArgs<ExtArgs>
   caja?: boolean | Prisma.Venta$cajaArgs<ExtArgs>
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   cliente?: boolean | Prisma.Venta$clienteArgs<ExtArgs>
@@ -1309,6 +1548,7 @@ export type VentaIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $VentaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Venta"
   objects: {
+    pedido: Prisma.$PedidoPayload<ExtArgs> | null
     caja: Prisma.$CajaPayload<ExtArgs> | null
     usuario: Prisma.$UsuarioPayload<ExtArgs>
     cliente: Prisma.$ClientePayload<ExtArgs> | null
@@ -1316,9 +1556,11 @@ export type $VentaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    pedidoId: number | null
     cajaId: number | null
     usuarioId: number
     clienteId: number | null
+    tipo: $Enums.TipoVenta
     fecha: Date
     subtotalVenta: runtime.Decimal
     descuento: runtime.Decimal
@@ -1722,6 +1964,7 @@ readonly fields: VentaFieldRefs;
  */
 export interface Prisma__VentaClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  pedido<T extends Prisma.Venta$pedidoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venta$pedidoArgs<ExtArgs>>): Prisma.Prisma__PedidoClient<runtime.Types.Result.GetResult<Prisma.$PedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   caja<T extends Prisma.Venta$cajaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venta$cajaArgs<ExtArgs>>): Prisma.Prisma__CajaClient<runtime.Types.Result.GetResult<Prisma.$CajaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   cliente<T extends Prisma.Venta$clienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Venta$clienteArgs<ExtArgs>>): Prisma.Prisma__ClienteClient<runtime.Types.Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1756,9 +1999,11 @@ export interface Prisma__VentaClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface VentaFieldRefs {
   readonly id: Prisma.FieldRef<"Venta", 'Int'>
+  readonly pedidoId: Prisma.FieldRef<"Venta", 'Int'>
   readonly cajaId: Prisma.FieldRef<"Venta", 'Int'>
   readonly usuarioId: Prisma.FieldRef<"Venta", 'Int'>
   readonly clienteId: Prisma.FieldRef<"Venta", 'Int'>
+  readonly tipo: Prisma.FieldRef<"Venta", 'TipoVenta'>
   readonly fecha: Prisma.FieldRef<"Venta", 'DateTime'>
   readonly subtotalVenta: Prisma.FieldRef<"Venta", 'Decimal'>
   readonly descuento: Prisma.FieldRef<"Venta", 'Decimal'>
@@ -2166,6 +2411,25 @@ export type VentaDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Ventas to delete.
    */
   limit?: number
+}
+
+/**
+ * Venta.pedido
+ */
+export type Venta$pedidoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pedido
+   */
+  select?: Prisma.PedidoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pedido
+   */
+  omit?: Prisma.PedidoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PedidoInclude<ExtArgs> | null
+  where?: Prisma.PedidoWhereInput
 }
 
 /**

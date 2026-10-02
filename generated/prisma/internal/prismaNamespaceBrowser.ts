@@ -287,9 +287,11 @@ export type CajaScalarFieldEnum = (typeof CajaScalarFieldEnum)[keyof typeof Caja
 
 export const VentaScalarFieldEnum = {
   id: 'id',
+  pedidoId: 'pedidoId',
   cajaId: 'cajaId',
   usuarioId: 'usuarioId',
   clienteId: 'clienteId',
+  tipo: 'tipo',
   fecha: 'fecha',
   subtotalVenta: 'subtotalVenta',
   descuento: 'descuento',

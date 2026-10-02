@@ -77,3 +77,12 @@ export const EstadoCaja = {
 } as const
 
 export type EstadoCaja = (typeof EstadoCaja)[keyof typeof EstadoCaja]
+
+
+export const TipoVenta = {
+  POS: 'POS',
+  REDES_SOCIALES: 'REDES_SOCIALES',
+  WEB: 'WEB'
+} as const
+
+export type TipoVenta = (typeof TipoVenta)[keyof typeof TipoVenta]

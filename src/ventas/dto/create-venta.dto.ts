@@ -11,7 +11,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { MetodoPago } from '../../../generated/prisma/client.js';
+import { MetodoPago, TipoVenta } from '../../../generated/prisma/client.js';
 import { CreateDetalleVentaDto } from '../../detalle-venta/dto/create-detalle-venta.dto.js';
 
 export class CreateVentaDto {
@@ -23,6 +23,19 @@ export class CreateVentaDto {
   @IsNotEmpty({ message: 'el cajaId es obligatorio' })
   @Min(1, { message: 'el cajaId debe ser mayor a 0' })
   cajaId: number;
+
+  @ApiPropertyOptional({
+    enum: TipoVenta,
+    example: TipoVenta.POS,
+    default: TipoVenta.POS,
+    description:
+      'Origen de la venta: POS para venta presencial o REDES_SOCIALES para una venta registrada desde redes sociales',
+  })
+  @IsOptional()
+  @IsEnum(TipoVenta, {
+    message: 'el tipo debe ser POS, REDES_SOCIALES o WEB',
+  })
+  tipo?: TipoVenta;
 
   @ApiPropertyOptional({
     example: 3,

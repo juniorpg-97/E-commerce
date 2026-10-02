@@ -11,6 +11,7 @@ export class VentasService {
     const {
       cajaId,
       clienteId,
+      tipo = 'POS',
       metodoPago,
       descuento = 0,
       observaciones,
@@ -117,6 +118,7 @@ export class VentasService {
           cajaId,
           usuarioId,
           clienteId,
+          tipo,
           subtotalVenta,
           descuento,
           totalVenta,

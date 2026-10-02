@@ -19,6 +19,9 @@ import { DetallePedidoModule } from './detalle-pedido/detalle-pedido.module.js';
 import { DireccionesModule } from './direcciones/direcciones.module.js';
 import { InventarioModule } from './inventario/inventario.module.js';
 import { MovimientosInventarioModule } from './movimientos-inventario/movimientos-inventario.module.js';
+import { PagosController } from './pagos/pagos.controller.js';
+import { PagosService } from './pagos/pagos.service.js';
+import { PagosModule } from './pagos/pagos.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -49,8 +52,9 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     DireccionesModule,
     InventarioModule,
     MovimientosInventarioModule,
+    PagosModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, PagosController],
+  providers: [AppService, PagosService],
 })
 export class AppModule {}

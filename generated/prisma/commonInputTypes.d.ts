@@ -314,11 +314,26 @@ export type EnumEstadoCajaWithAggregatesFilter<$PrismaModel = never> = {
     _min?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>;
 };
+export type EnumTipoVentaFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>;
+    in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel> | $Enums.TipoVenta;
+};
 export type EnumEstadoVentaFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>;
     in?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>;
     notIn?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>;
     not?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel> | $Enums.EstadoVenta;
+};
+export type EnumTipoVentaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>;
+    in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel> | $Enums.TipoVenta;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>;
 };
 export type EnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>;
@@ -328,6 +343,21 @@ export type EnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {
     _count?: Prisma.NestedIntFilter<$PrismaModel>;
     _min?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel>;
+};
+export type EnumEstadoPagoFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoPago | Prisma.EnumEstadoPagoFieldRefInput<$PrismaModel>;
+    in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel> | $Enums.EstadoPago;
+};
+export type EnumEstadoPagoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoPago | Prisma.EnumEstadoPagoFieldRefInput<$PrismaModel>;
+    in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumEstadoPagoWithAggregatesFilter<$PrismaModel> | $Enums.EstadoPago;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel>;
 };
 export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | Prisma.IntFieldRefInput<$PrismaModel>;
@@ -654,11 +684,26 @@ export type NestedEnumEstadoCajaWithAggregatesFilter<$PrismaModel = never> = {
     _min?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumEstadoCajaFilter<$PrismaModel>;
 };
+export type NestedEnumTipoVentaFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>;
+    in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel> | $Enums.TipoVenta;
+};
 export type NestedEnumEstadoVentaFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>;
     in?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>;
     notIn?: $Enums.EstadoVenta[] | Prisma.ListEnumEstadoVentaFieldRefInput<$PrismaModel>;
     not?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel> | $Enums.EstadoVenta;
+};
+export type NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoVenta | Prisma.EnumTipoVentaFieldRefInput<$PrismaModel>;
+    in?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.TipoVenta[] | Prisma.ListEnumTipoVentaFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumTipoVentaWithAggregatesFilter<$PrismaModel> | $Enums.TipoVenta;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumTipoVentaFilter<$PrismaModel>;
 };
 export type NestedEnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoVenta | Prisma.EnumEstadoVentaFieldRefInput<$PrismaModel>;
@@ -669,3 +714,19 @@ export type NestedEnumEstadoVentaWithAggregatesFilter<$PrismaModel = never> = {
     _min?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumEstadoVentaFilter<$PrismaModel>;
 };
+export type NestedEnumEstadoPagoFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoPago | Prisma.EnumEstadoPagoFieldRefInput<$PrismaModel>;
+    in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel> | $Enums.EstadoPago;
+};
+export type NestedEnumEstadoPagoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoPago | Prisma.EnumEstadoPagoFieldRefInput<$PrismaModel>;
+    in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumEstadoPagoWithAggregatesFilter<$PrismaModel> | $Enums.EstadoPago;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel>;
+};
+//# sourceMappingURL=commonInputTypes.d.ts.map

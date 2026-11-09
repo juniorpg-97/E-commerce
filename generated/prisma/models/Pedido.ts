@@ -264,6 +264,7 @@ export type PedidoWhereInput = {
   direccion?: Prisma.XOR<Prisma.DireccionScalarRelationFilter, Prisma.DireccionWhereInput>
   detalles?: Prisma.DetallePedidoListRelationFilter
   venta?: Prisma.XOR<Prisma.VentaNullableScalarRelationFilter, Prisma.VentaWhereInput> | null
+  pagos?: Prisma.PagoListRelationFilter
 }
 
 export type PedidoOrderByWithRelationInput = {
@@ -280,6 +281,7 @@ export type PedidoOrderByWithRelationInput = {
   direccion?: Prisma.DireccionOrderByWithRelationInput
   detalles?: Prisma.DetallePedidoOrderByRelationAggregateInput
   venta?: Prisma.VentaOrderByWithRelationInput
+  pagos?: Prisma.PagoOrderByRelationAggregateInput
 }
 
 export type PedidoWhereUniqueInput = Prisma.AtLeast<{
@@ -299,6 +301,7 @@ export type PedidoWhereUniqueInput = Prisma.AtLeast<{
   direccion?: Prisma.XOR<Prisma.DireccionScalarRelationFilter, Prisma.DireccionWhereInput>
   detalles?: Prisma.DetallePedidoListRelationFilter
   venta?: Prisma.XOR<Prisma.VentaNullableScalarRelationFilter, Prisma.VentaWhereInput> | null
+  pagos?: Prisma.PagoListRelationFilter
 }, "id">
 
 export type PedidoOrderByWithAggregationInput = {
@@ -344,6 +347,7 @@ export type PedidoCreateInput = {
   direccion: Prisma.DireccionCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.DetallePedidoCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateInput = {
@@ -358,6 +362,7 @@ export type PedidoUncheckedCreateInput = {
   actualizadoEn?: Date | string
   detalles?: Prisma.DetallePedidoUncheckedCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaUncheckedCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUpdateInput = {
@@ -371,6 +376,7 @@ export type PedidoUpdateInput = {
   direccion?: Prisma.DireccionUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.DetallePedidoUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateInput = {
@@ -385,6 +391,7 @@ export type PedidoUncheckedUpdateInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   detalles?: Prisma.DetallePedidoUncheckedUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUncheckedUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoCreateManyInput = {
@@ -612,6 +619,22 @@ export type PedidoUpdateOneWithoutVentaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutVentaInput, Prisma.PedidoUpdateWithoutVentaInput>, Prisma.PedidoUncheckedUpdateWithoutVentaInput>
 }
 
+export type PedidoCreateNestedOneWithoutPagosInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutPagosInput, Prisma.PedidoUncheckedCreateWithoutPagosInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutPagosInput
+  connect?: Prisma.PedidoWhereUniqueInput
+}
+
+export type PedidoUpdateOneWithoutPagosNestedInput = {
+  create?: Prisma.XOR<Prisma.PedidoCreateWithoutPagosInput, Prisma.PedidoUncheckedCreateWithoutPagosInput>
+  connectOrCreate?: Prisma.PedidoCreateOrConnectWithoutPagosInput
+  upsert?: Prisma.PedidoUpsertWithoutPagosInput
+  disconnect?: Prisma.PedidoWhereInput | boolean
+  delete?: Prisma.PedidoWhereInput | boolean
+  connect?: Prisma.PedidoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PedidoUpdateToOneWithWhereWithoutPagosInput, Prisma.PedidoUpdateWithoutPagosInput>, Prisma.PedidoUncheckedUpdateWithoutPagosInput>
+}
+
 export type PedidoCreateWithoutClienteInput = {
   estado?: $Enums.EstadoPedido
   total: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -622,6 +645,7 @@ export type PedidoCreateWithoutClienteInput = {
   direccion: Prisma.DireccionCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.DetallePedidoCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutClienteInput = {
@@ -635,6 +659,7 @@ export type PedidoUncheckedCreateWithoutClienteInput = {
   actualizadoEn?: Date | string
   detalles?: Prisma.DetallePedidoUncheckedCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaUncheckedCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutClienteInput = {
@@ -688,6 +713,7 @@ export type PedidoCreateWithoutDireccionInput = {
   cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.DetallePedidoCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutDireccionInput = {
@@ -701,6 +727,7 @@ export type PedidoUncheckedCreateWithoutDireccionInput = {
   actualizadoEn?: Date | string
   detalles?: Prisma.DetallePedidoUncheckedCreateNestedManyWithoutPedidoInput
   venta?: Prisma.VentaUncheckedCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutDireccionInput = {
@@ -739,6 +766,7 @@ export type PedidoCreateWithoutDetallesInput = {
   cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
   direccion: Prisma.DireccionCreateNestedOneWithoutPedidosInput
   venta?: Prisma.VentaCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutDetallesInput = {
@@ -752,6 +780,7 @@ export type PedidoUncheckedCreateWithoutDetallesInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   venta?: Prisma.VentaUncheckedCreateNestedOneWithoutPedidoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutDetallesInput = {
@@ -780,6 +809,7 @@ export type PedidoUpdateWithoutDetallesInput = {
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
   direccion?: Prisma.DireccionUpdateOneRequiredWithoutPedidosNestedInput
   venta?: Prisma.VentaUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutDetallesInput = {
@@ -793,6 +823,7 @@ export type PedidoUncheckedUpdateWithoutDetallesInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venta?: Prisma.VentaUncheckedUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoCreateWithoutVentaInput = {
@@ -805,6 +836,7 @@ export type PedidoCreateWithoutVentaInput = {
   cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
   direccion: Prisma.DireccionCreateNestedOneWithoutPedidosInput
   detalles?: Prisma.DetallePedidoCreateNestedManyWithoutPedidoInput
+  pagos?: Prisma.PagoCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoUncheckedCreateWithoutVentaInput = {
@@ -818,6 +850,7 @@ export type PedidoUncheckedCreateWithoutVentaInput = {
   creadoEn?: Date | string
   actualizadoEn?: Date | string
   detalles?: Prisma.DetallePedidoUncheckedCreateNestedManyWithoutPedidoInput
+  pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutPedidoInput
 }
 
 export type PedidoCreateOrConnectWithoutVentaInput = {
@@ -846,6 +879,7 @@ export type PedidoUpdateWithoutVentaInput = {
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
   direccion?: Prisma.DireccionUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.DetallePedidoUpdateManyWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutVentaInput = {
@@ -859,6 +893,77 @@ export type PedidoUncheckedUpdateWithoutVentaInput = {
   creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   detalles?: Prisma.DetallePedidoUncheckedUpdateManyWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutPedidoNestedInput
+}
+
+export type PedidoCreateWithoutPagosInput = {
+  estado?: $Enums.EstadoPedido
+  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago: $Enums.MetodoPago
+  observaciones?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  cliente: Prisma.ClienteCreateNestedOneWithoutPedidosInput
+  direccion: Prisma.DireccionCreateNestedOneWithoutPedidosInput
+  detalles?: Prisma.DetallePedidoCreateNestedManyWithoutPedidoInput
+  venta?: Prisma.VentaCreateNestedOneWithoutPedidoInput
+}
+
+export type PedidoUncheckedCreateWithoutPagosInput = {
+  id?: number
+  clienteId: number
+  direccionId: number
+  estado?: $Enums.EstadoPedido
+  total: runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago: $Enums.MetodoPago
+  observaciones?: string | null
+  creadoEn?: Date | string
+  actualizadoEn?: Date | string
+  detalles?: Prisma.DetallePedidoUncheckedCreateNestedManyWithoutPedidoInput
+  venta?: Prisma.VentaUncheckedCreateNestedOneWithoutPedidoInput
+}
+
+export type PedidoCreateOrConnectWithoutPagosInput = {
+  where: Prisma.PedidoWhereUniqueInput
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutPagosInput, Prisma.PedidoUncheckedCreateWithoutPagosInput>
+}
+
+export type PedidoUpsertWithoutPagosInput = {
+  update: Prisma.XOR<Prisma.PedidoUpdateWithoutPagosInput, Prisma.PedidoUncheckedUpdateWithoutPagosInput>
+  create: Prisma.XOR<Prisma.PedidoCreateWithoutPagosInput, Prisma.PedidoUncheckedCreateWithoutPagosInput>
+  where?: Prisma.PedidoWhereInput
+}
+
+export type PedidoUpdateToOneWithWhereWithoutPagosInput = {
+  where?: Prisma.PedidoWhereInput
+  data: Prisma.XOR<Prisma.PedidoUpdateWithoutPagosInput, Prisma.PedidoUncheckedUpdateWithoutPagosInput>
+}
+
+export type PedidoUpdateWithoutPagosInput = {
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
+  direccion?: Prisma.DireccionUpdateOneRequiredWithoutPedidosNestedInput
+  detalles?: Prisma.DetallePedidoUpdateManyWithoutPedidoNestedInput
+  venta?: Prisma.VentaUpdateOneWithoutPedidoNestedInput
+}
+
+export type PedidoUncheckedUpdateWithoutPagosInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  clienteId?: Prisma.IntFieldUpdateOperationsInput | number
+  direccionId?: Prisma.IntFieldUpdateOperationsInput | number
+  estado?: Prisma.EnumEstadoPedidoFieldUpdateOperationsInput | $Enums.EstadoPedido
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  metodoPago?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  detalles?: Prisma.DetallePedidoUncheckedUpdateManyWithoutPedidoNestedInput
+  venta?: Prisma.VentaUncheckedUpdateOneWithoutPedidoNestedInput
 }
 
 export type PedidoCreateManyClienteInput = {
@@ -882,6 +987,7 @@ export type PedidoUpdateWithoutClienteInput = {
   direccion?: Prisma.DireccionUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.DetallePedidoUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutClienteInput = {
@@ -895,6 +1001,7 @@ export type PedidoUncheckedUpdateWithoutClienteInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   detalles?: Prisma.DetallePedidoUncheckedUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUncheckedUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateManyWithoutClienteInput = {
@@ -929,6 +1036,7 @@ export type PedidoUpdateWithoutDireccionInput = {
   cliente?: Prisma.ClienteUpdateOneRequiredWithoutPedidosNestedInput
   detalles?: Prisma.DetallePedidoUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateWithoutDireccionInput = {
@@ -942,6 +1050,7 @@ export type PedidoUncheckedUpdateWithoutDireccionInput = {
   actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   detalles?: Prisma.DetallePedidoUncheckedUpdateManyWithoutPedidoNestedInput
   venta?: Prisma.VentaUncheckedUpdateOneWithoutPedidoNestedInput
+  pagos?: Prisma.PagoUncheckedUpdateManyWithoutPedidoNestedInput
 }
 
 export type PedidoUncheckedUpdateManyWithoutDireccionInput = {
@@ -962,10 +1071,12 @@ export type PedidoUncheckedUpdateManyWithoutDireccionInput = {
 
 export type PedidoCountOutputType = {
   detalles: number
+  pagos: number
 }
 
 export type PedidoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   detalles?: boolean | PedidoCountOutputTypeCountDetallesArgs
+  pagos?: boolean | PedidoCountOutputTypeCountPagosArgs
 }
 
 /**
@@ -985,6 +1096,13 @@ export type PedidoCountOutputTypeCountDetallesArgs<ExtArgs extends runtime.Types
   where?: Prisma.DetallePedidoWhereInput
 }
 
+/**
+ * PedidoCountOutputType without action
+ */
+export type PedidoCountOutputTypeCountPagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PagoWhereInput
+}
+
 
 export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1000,6 +1118,7 @@ export type PedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   direccion?: boolean | Prisma.DireccionDefaultArgs<ExtArgs>
   detalles?: boolean | Prisma.Pedido$detallesArgs<ExtArgs>
   venta?: boolean | Prisma.Pedido$ventaArgs<ExtArgs>
+  pagos?: boolean | Prisma.Pedido$pagosArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pedido"]>
 
@@ -1049,6 +1168,7 @@ export type PedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   direccion?: boolean | Prisma.DireccionDefaultArgs<ExtArgs>
   detalles?: boolean | Prisma.Pedido$detallesArgs<ExtArgs>
   venta?: boolean | Prisma.Pedido$ventaArgs<ExtArgs>
+  pagos?: boolean | Prisma.Pedido$pagosArgs<ExtArgs>
   _count?: boolean | Prisma.PedidoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1067,6 +1187,7 @@ export type $PedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     direccion: Prisma.$DireccionPayload<ExtArgs>
     detalles: Prisma.$DetallePedidoPayload<ExtArgs>[]
     venta: Prisma.$VentaPayload<ExtArgs> | null
+    pagos: Prisma.$PagoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1476,6 +1597,7 @@ export interface Prisma__PedidoClient<T, Null = never, ExtArgs extends runtime.T
   direccion<T extends Prisma.DireccionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DireccionDefaultArgs<ExtArgs>>): Prisma.Prisma__DireccionClient<runtime.Types.Result.GetResult<Prisma.$DireccionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   detalles<T extends Prisma.Pedido$detallesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DetallePedidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   venta<T extends Prisma.Pedido$ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$ventaArgs<ExtArgs>>): Prisma.Prisma__VentaClient<runtime.Types.Result.GetResult<Prisma.$VentaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  pagos<T extends Prisma.Pedido$pagosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pedido$pagosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1955,6 +2077,30 @@ export type Pedido$ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   include?: Prisma.VentaInclude<ExtArgs> | null
   where?: Prisma.VentaWhereInput
+}
+
+/**
+ * Pedido.pagos
+ */
+export type Pedido$pagosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pago
+   */
+  select?: Prisma.PagoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pago
+   */
+  omit?: Prisma.PagoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PagoInclude<ExtArgs> | null
+  where?: Prisma.PagoWhereInput
+  orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[]
+  cursor?: Prisma.PagoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[]
 }
 
 /**

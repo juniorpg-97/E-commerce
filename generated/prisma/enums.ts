@@ -65,10 +65,21 @@ export const MetodoPago = {
   TRANSFERENCIA: 'TRANSFERENCIA',
   YAPE: 'YAPE',
   PLIN: 'PLIN',
-  OTRO: 'OTRO'
+  OTRO: 'OTRO',
+  MOCKPAY: 'MOCKPAY'
 } as const
 
 export type MetodoPago = (typeof MetodoPago)[keyof typeof MetodoPago]
+
+
+export const EstadoPago = {
+  PENDIENTE: 'PENDIENTE',
+  APROBADO: 'APROBADO',
+  RECHAZADO: 'RECHAZADO',
+  CANCELADO: 'CANCELADO'
+} as const
+
+export type EstadoPago = (typeof EstadoPago)[keyof typeof EstadoPago]
 
 
 export const EstadoCaja = {

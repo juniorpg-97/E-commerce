@@ -14,4 +14,6 @@ export type * from './models/DetallePedido.js';
 export type * from './models/Caja.js';
 export type * from './models/Venta.js';
 export type * from './models/DetalleVenta.js';
+export type * from './models/Pago.js';
 export type * from './commonInputTypes.js';
+//# sourceMappingURL=models.d.ts.map

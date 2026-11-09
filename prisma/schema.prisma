@@ -4,8 +4,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"  
+  provider = "postgresql"
 }
+
+// ======================================================
+// ENUMS
+// ======================================================
 
 enum Rol {
   ADMINISTRADOR
@@ -49,6 +53,14 @@ enum MetodoPago {
   YAPE
   PLIN
   OTRO
+  MOCKPAY
+}
+
+enum EstadoPago {
+  PENDIENTE
+  APROBADO
+  RECHAZADO
+  CANCELADO
 }
 
 enum EstadoCaja {
@@ -62,26 +74,25 @@ enum TipoVenta {
   WEB
 }
 
-
 // ======================================================
 // 1. USUARIO
 // ======================================================
 
 model Usuario {
-  id            Int      @id @default(autoincrement())
-  nombre        String
-  apellido      String
-  email         String   @unique
-  password      String
-  rol           Rol      @default(CLIENTE)
-  activo        Boolean  @default(true)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  nombre       String
+  apellido     String
+  email        String   @unique
+  password     String
+  rol          Rol      @default(CLIENTE)
+  activo       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  cliente     Cliente?
-  cajas       Caja[]
-  ventas      Venta[]
-  movimientos MovimientoInventario[]
+  cliente      Cliente?
+  cajas        Caja[]
+  ventas       Venta[]
+  movimientos  MovimientoInventario[]
 }
 
 // ======================================================
@@ -89,21 +100,21 @@ model Usuario {
 // ======================================================
 
 model Cliente {
-  id            Int      @id @default(autoincrement())
-  usuarioId     Int      @unique
-  nombre        String
-  apellido      String
-  email         String   @unique
-  telefono      String?
-  activo        Boolean  @default(true)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  usuarioId    Int      @unique
+  nombre       String
+  apellido     String
+  email        String   @unique
+  telefono     String?
+  activo       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  usuario     Usuario     @relation(fields: [usuarioId], references: [id])
-  direcciones Direccion[]
-  carritos    Carrito[]
-  pedidos     Pedido[]
-  ventas      Venta[]
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+  direcciones  Direccion[]
+  carritos     Carrito[]
+  pedidos      Pedido[]
+  ventas       Venta[]
 }
 
 // ======================================================
@@ -111,19 +122,19 @@ model Cliente {
 // ======================================================
 
 model Direccion {
-  id            Int      @id @default(autoincrement())
-  clienteId     Int
-  calle         String
-  numero        String
-  referencia    String?
-  ciudad        String
-  codigoPostal  String
-  activa        Boolean  @default(true)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  clienteId    Int
+  calle        String
+  numero       String
+  referencia   String?
+  ciudad       String
+  codigoPostal String
+  activa       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  cliente Cliente  @relation(fields: [clienteId], references: [id])
-  pedidos Pedido[]
+  cliente      Cliente @relation(fields: [clienteId], references: [id])
+  pedidos      Pedido[]
 }
 
 // ======================================================
@@ -131,14 +142,14 @@ model Direccion {
 // ======================================================
 
 model Categoria {
-  id            Int      @id @default(autoincrement())
-  nombre        String   @unique
-  descripcion   String?  @db.Text
-  activa        Boolean  @default(true)
-  creadoEn      DateTime @default(now())   
+  id           Int      @id @default(autoincrement())
+  nombre       String   @unique
+  descripcion  String?  @db.Text
+  activa       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  productos Producto[]
+  productos    Producto[]
 }
 
 // ======================================================
@@ -156,12 +167,12 @@ model Producto {
   creadoEn         DateTime @default(now())
   actualizadoEn    DateTime @updatedAt
 
-  categoria       Categoria           @relation(fields: [categoriaId], references: [id])
-  inventario      Inventario?
-  descuentos      ProductoDescuento[]
-  detallesCarrito DetalleCarrito[]
-  detallesPedido  DetallePedido[]
-  detallesVenta   DetalleVenta[]
+  categoria        Categoria           @relation(fields: [categoriaId], references: [id])
+  inventario       Inventario?
+  descuentos       ProductoDescuento[]
+  detallesCarrito  DetalleCarrito[]
+  detallesPedido   DetallePedido[]
+  detallesVenta    DetalleVenta[]
 }
 
 // ======================================================
@@ -169,14 +180,14 @@ model Producto {
 // ======================================================
 
 model Inventario {
-  id            Int      @id @default(autoincrement())
-  productoId    Int      @unique
-  stock         Int      @default(0)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  productoId   Int      @unique
+  stock        Int      @default(0)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  producto    Producto               @relation(fields: [productoId], references: [id])
-  movimientos MovimientoInventario[]
+  producto     Producto               @relation(fields: [productoId], references: [id])
+  movimientos  MovimientoInventario[]
 }
 
 // ======================================================
@@ -195,9 +206,9 @@ model MovimientoInventario {
   fecha          DateTime       @default(now())
   creadoEn       DateTime       @default(now())
 
-  inventario   Inventario    @relation(fields: [inventarioId], references: [id])
-  usuario      Usuario?      @relation(fields: [usuarioId], references: [id])
-  detalleVenta DetalleVenta? @relation(fields: [detalleVentaId], references: [id])
+  inventario     Inventario     @relation(fields: [inventarioId], references: [id])
+  usuario        Usuario?       @relation(fields: [usuarioId], references: [id])
+  detalleVenta   DetalleVenta?  @relation(fields: [detalleVentaId], references: [id])
 }
 
 // ======================================================
@@ -205,19 +216,19 @@ model MovimientoInventario {
 // ======================================================
 
 model Descuento {
-  id            Int           @id @default(autoincrement())
-  nombre        String
-  descripcion   String?
-  tipo          TipoDescuento
-  porcentaje    Decimal?      @db.Decimal(5, 2)
-  monto         Decimal?      @db.Decimal(10, 2)
-  fechaInicio   DateTime
-  fechaFin      DateTime
-  activo        Boolean       @default(true)
-  creadoEn      DateTime      @default(now())
-  actualizadoEn DateTime      @updatedAt
+  id           Int           @id @default(autoincrement())
+  nombre       String
+  descripcion  String?
+  tipo         TipoDescuento
+  porcentaje   Decimal?      @db.Decimal(5, 2)
+  monto        Decimal?      @db.Decimal(10, 2)
+  fechaInicio  DateTime
+  fechaFin     DateTime
+  activo       Boolean       @default(true)
+  creadoEn     DateTime      @default(now())
+  actualizadoEn DateTime     @updatedAt
 
-  productos ProductoDescuento[]
+  productos    ProductoDescuento[]
 }
 
 // ======================================================
@@ -226,15 +237,15 @@ model Descuento {
 // ======================================================
 
 model ProductoDescuento {
-  id            Int      @id @default(autoincrement())
-  productoId    Int
-  descuentoId   Int
-  activo        Boolean  @default(true)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  productoId   Int
+  descuentoId  Int
+  activo       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  producto  Producto  @relation(fields: [productoId], references: [id])
-  descuento Descuento @relation(fields: [descuentoId], references: [id])
+  producto     Producto  @relation(fields: [productoId], references: [id])
+  descuento    Descuento @relation(fields: [descuentoId], references: [id])
 
   @@unique([productoId, descuentoId])
 }
@@ -244,14 +255,14 @@ model ProductoDescuento {
 // ======================================================
 
 model Carrito {
-  id            Int      @id @default(autoincrement())
-  clienteId     Int
-  activo        Boolean  @default(true)
-  creadoEn      DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  clienteId    Int
+  activo       Boolean  @default(true)
+  creadoEn     DateTime @default(now())
   actualizadoEn DateTime @updatedAt
 
-  cliente  Cliente          @relation(fields: [clienteId], references: [id])
-  detalles DetalleCarrito[]
+  cliente      Cliente          @relation(fields: [clienteId], references: [id])
+  detalles     DetalleCarrito[]
 }
 
 // ======================================================
@@ -267,8 +278,8 @@ model DetalleCarrito {
   creadoEn       DateTime @default(now())
   actualizadoEn  DateTime @updatedAt
 
-  carrito  Carrito  @relation(fields: [carritoId], references: [id])
-  producto Producto @relation(fields: [productoId], references: [id])
+  carrito        Carrito  @relation(fields: [carritoId], references: [id])
+  producto       Producto @relation(fields: [productoId], references: [id])
 
   @@unique([carritoId, productoId])
 }
@@ -278,20 +289,21 @@ model DetalleCarrito {
 // ======================================================
 
 model Pedido {
-  id            Int          @id @default(autoincrement())
-  clienteId     Int
-  direccionId   Int
-  estado        EstadoPedido @default(PENDIENTE)
-  total         Decimal      @db.Decimal(10, 2)
-  metodoPago    MetodoPago
-  observaciones String?
-  creadoEn      DateTime     @default(now())
-  actualizadoEn DateTime     @updatedAt
+  id             Int          @id @default(autoincrement())
+  clienteId      Int
+  direccionId    Int
+  estado         EstadoPedido  @default(PENDIENTE)
+  total          Decimal      @db.Decimal(10, 2)
+  metodoPago     MetodoPago
+  observaciones  String?
+  creadoEn       DateTime     @default(now())
+  actualizadoEn  DateTime     @updatedAt
 
-  cliente   Cliente         @relation(fields: [clienteId], references: [id])
-  direccion Direccion       @relation(fields: [direccionId], references: [id])
-  detalles  DetallePedido[]
-  venta     Venta?
+  cliente        Cliente        @relation(fields: [clienteId], references: [id])
+  direccion      Direccion      @relation(fields: [direccionId], references: [id])
+  detalles       DetallePedido[]
+  venta          Venta?
+  pagos          Pago[]
 }
 
 // ======================================================
@@ -309,8 +321,8 @@ model DetallePedido {
   creadoEn       DateTime @default(now())
   actualizadoEn  DateTime @updatedAt
 
-  pedido   Pedido   @relation(fields: [pedidoId], references: [id])
-  producto Producto @relation(fields: [productoId], references: [id])
+  pedido         Pedido   @relation(fields: [pedidoId], references: [id])
+  producto       Producto @relation(fields: [productoId], references: [id])
 }
 
 // ======================================================
@@ -318,20 +330,20 @@ model DetallePedido {
 // ======================================================
 
 model Caja {
-  id            Int        @id @default(autoincrement())
-  usuarioId     Int
-  fechaApertura DateTime
-  fechaCierre   DateTime?
-  montoInicial  Decimal    @db.Decimal(10, 2)
-  montoEsperado Decimal?   @db.Decimal(10, 2)
-  montoContado  Decimal?   @db.Decimal(10, 2)
-  diferencia    Decimal?   @db.Decimal(10, 2)
-  estado        EstadoCaja @default(ABIERTA)
-  creadoEn      DateTime   @default(now())
-  actualizadoEn DateTime   @updatedAt
+  id             Int        @id @default(autoincrement())
+  usuarioId      Int
+  fechaApertura  DateTime
+  fechaCierre    DateTime?
+  montoInicial   Decimal    @db.Decimal(10, 2)
+  montoEsperado  Decimal?   @db.Decimal(10, 2)
+  montoContado   Decimal?   @db.Decimal(10, 2)
+  diferencia     Decimal?   @db.Decimal(10, 2)
+  estado         EstadoCaja @default(ABIERTA)
+  creadoEn       DateTime   @default(now())
+  actualizadoEn  DateTime   @updatedAt
 
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
-  ventas  Venta[]
+  usuario        Usuario @relation(fields: [usuarioId], references: [id])
+  ventas         Venta[]
 }
 
 // ======================================================
@@ -339,27 +351,28 @@ model Caja {
 // ======================================================
 
 model Venta {
-  id            Int         @id @default(autoincrement())
-  pedidoId      Int?        @unique
-  cajaId        Int?
-  usuarioId     Int
-  clienteId     Int?
-  tipo          TipoVenta   @default(POS)
-  fecha         DateTime    @default(now())
-  subtotalVenta Decimal     @db.Decimal(10, 2)
-  descuento     Decimal     @default(0) @db.Decimal(10, 2)
-  totalVenta    Decimal     @db.Decimal(10, 2)
-  metodoPago    MetodoPago
-  estado        EstadoVenta @default(COMPLETADA)
-  observaciones String?
-  creadoEn      DateTime    @default(now())
-  actualizadoEn DateTime    @updatedAt
+  id             Int         @id @default(autoincrement())
+  pedidoId       Int?        @unique
+  cajaId         Int?
+  usuarioId      Int
+  clienteId      Int?
+  tipo           TipoVenta   @default(POS)
+  fecha          DateTime    @default(now())
+  subtotalVenta  Decimal     @db.Decimal(10, 2)
+  descuento      Decimal     @default(0) @db.Decimal(10, 2)
+  totalVenta     Decimal     @db.Decimal(10, 2)
+  metodoPago     MetodoPago
+  estado         EstadoVenta @default(COMPLETADA)
+  observaciones  String?
+  creadoEn       DateTime    @default(now())
+  actualizadoEn  DateTime    @updatedAt
 
-  pedido   Pedido?        @relation(fields: [pedidoId], references: [id])
-  caja     Caja?          @relation(fields: [cajaId], references: [id])
-  usuario  Usuario        @relation(fields: [usuarioId], references: [id])
-  cliente  Cliente?       @relation(fields: [clienteId], references: [id])
-  detalles DetalleVenta[]
+  pedido         Pedido?       @relation(fields: [pedidoId], references: [id])
+  caja           Caja?         @relation(fields: [cajaId], references: [id])
+  usuario        Usuario       @relation(fields: [usuarioId], references: [id])
+  cliente        Cliente?      @relation(fields: [clienteId], references: [id])
+  detalles       DetalleVenta[]
+  pagos          Pago[]
 }
 
 // ======================================================
@@ -376,7 +389,33 @@ model DetalleVenta {
   creadoEn       DateTime @default(now())
   actualizadoEn  DateTime @updatedAt
 
-  venta       Venta                  @relation(fields: [ventaId], references: [id])
-  producto    Producto               @relation(fields: [productoId], references: [id])
-  movimientos MovimientoInventario[]
+  venta          Venta                   @relation(fields: [ventaId], references: [id])
+  producto       Producto                @relation(fields: [productoId], references: [id])
+  movimientos    MovimientoInventario[]
+}
+
+// ======================================================
+// 17. PAGO
+// Integración con MockPay
+// ======================================================
+
+model Pago {
+  id                Int         @id @default(autoincrement())
+  pedidoId          Int?
+  ventaId           Int?
+  metodo            MetodoPago
+  estado            EstadoPago @default(PENDIENTE)
+  monto             Decimal    @db.Decimal(10, 2)
+
+  // Información de MockPay
+  transaccionId     String?     @unique
+  referencia        String?
+  respuestaMockPay  String?
+  fechaPago         DateTime?
+
+  creadoEn          DateTime    @default(now())
+  actualizadoEn     DateTime    @updatedAt
+
+  pedido            Pedido?     @relation(fields: [pedidoId], references: [id])
+  venta             Venta?      @relation(fields: [ventaId], references: [id])
 }

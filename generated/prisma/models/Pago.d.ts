@@ -1,0 +1,1657 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as $Enums from "../enums.js";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model Pago
+ *
+ */
+export type PagoModel = runtime.Types.Result.DefaultSelection<Prisma.$PagoPayload>;
+export type AggregatePago = {
+    _count: PagoCountAggregateOutputType | null;
+    _avg: PagoAvgAggregateOutputType | null;
+    _sum: PagoSumAggregateOutputType | null;
+    _min: PagoMinAggregateOutputType | null;
+    _max: PagoMaxAggregateOutputType | null;
+};
+export type PagoAvgAggregateOutputType = {
+    id: number | null;
+    pedidoId: number | null;
+    ventaId: number | null;
+    monto: runtime.Decimal | null;
+};
+export type PagoSumAggregateOutputType = {
+    id: number | null;
+    pedidoId: number | null;
+    ventaId: number | null;
+    monto: runtime.Decimal | null;
+};
+export type PagoMinAggregateOutputType = {
+    id: number | null;
+    pedidoId: number | null;
+    ventaId: number | null;
+    metodo: $Enums.MetodoPago | null;
+    estado: $Enums.EstadoPago | null;
+    monto: runtime.Decimal | null;
+    transaccionId: string | null;
+    referencia: string | null;
+    respuestaMockPay: string | null;
+    fechaPago: Date | null;
+    creadoEn: Date | null;
+    actualizadoEn: Date | null;
+};
+export type PagoMaxAggregateOutputType = {
+    id: number | null;
+    pedidoId: number | null;
+    ventaId: number | null;
+    metodo: $Enums.MetodoPago | null;
+    estado: $Enums.EstadoPago | null;
+    monto: runtime.Decimal | null;
+    transaccionId: string | null;
+    referencia: string | null;
+    respuestaMockPay: string | null;
+    fechaPago: Date | null;
+    creadoEn: Date | null;
+    actualizadoEn: Date | null;
+};
+export type PagoCountAggregateOutputType = {
+    id: number;
+    pedidoId: number;
+    ventaId: number;
+    metodo: number;
+    estado: number;
+    monto: number;
+    transaccionId: number;
+    referencia: number;
+    respuestaMockPay: number;
+    fechaPago: number;
+    creadoEn: number;
+    actualizadoEn: number;
+    _all: number;
+};
+export type PagoAvgAggregateInputType = {
+    id?: true;
+    pedidoId?: true;
+    ventaId?: true;
+    monto?: true;
+};
+export type PagoSumAggregateInputType = {
+    id?: true;
+    pedidoId?: true;
+    ventaId?: true;
+    monto?: true;
+};
+export type PagoMinAggregateInputType = {
+    id?: true;
+    pedidoId?: true;
+    ventaId?: true;
+    metodo?: true;
+    estado?: true;
+    monto?: true;
+    transaccionId?: true;
+    referencia?: true;
+    respuestaMockPay?: true;
+    fechaPago?: true;
+    creadoEn?: true;
+    actualizadoEn?: true;
+};
+export type PagoMaxAggregateInputType = {
+    id?: true;
+    pedidoId?: true;
+    ventaId?: true;
+    metodo?: true;
+    estado?: true;
+    monto?: true;
+    transaccionId?: true;
+    referencia?: true;
+    respuestaMockPay?: true;
+    fechaPago?: true;
+    creadoEn?: true;
+    actualizadoEn?: true;
+};
+export type PagoCountAggregateInputType = {
+    id?: true;
+    pedidoId?: true;
+    ventaId?: true;
+    metodo?: true;
+    estado?: true;
+    monto?: true;
+    transaccionId?: true;
+    referencia?: true;
+    respuestaMockPay?: true;
+    fechaPago?: true;
+    creadoEn?: true;
+    actualizadoEn?: true;
+    _all?: true;
+};
+export type PagoAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Pago to aggregate.
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Pagos to fetch.
+     */
+    orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.PagoWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Pagos from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Pagos.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned Pagos
+    **/
+    _count?: true | PagoCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: PagoAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: PagoSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: PagoMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: PagoMaxAggregateInputType;
+};
+export type GetPagoAggregateType<T extends PagoAggregateArgs> = {
+    [P in keyof T & keyof AggregatePago]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregatePago[P]> : Prisma.GetScalarType<T[P], AggregatePago[P]>;
+};
+export type PagoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.PagoWhereInput;
+    orderBy?: Prisma.PagoOrderByWithAggregationInput | Prisma.PagoOrderByWithAggregationInput[];
+    by: Prisma.PagoScalarFieldEnum[] | Prisma.PagoScalarFieldEnum;
+    having?: Prisma.PagoScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: PagoCountAggregateInputType | true;
+    _avg?: PagoAvgAggregateInputType;
+    _sum?: PagoSumAggregateInputType;
+    _min?: PagoMinAggregateInputType;
+    _max?: PagoMaxAggregateInputType;
+};
+export type PagoGroupByOutputType = {
+    id: number;
+    pedidoId: number | null;
+    ventaId: number | null;
+    metodo: $Enums.MetodoPago;
+    estado: $Enums.EstadoPago;
+    monto: runtime.Decimal;
+    transaccionId: string | null;
+    referencia: string | null;
+    respuestaMockPay: string | null;
+    fechaPago: Date | null;
+    creadoEn: Date;
+    actualizadoEn: Date;
+    _count: PagoCountAggregateOutputType | null;
+    _avg: PagoAvgAggregateOutputType | null;
+    _sum: PagoSumAggregateOutputType | null;
+    _min: PagoMinAggregateOutputType | null;
+    _max: PagoMaxAggregateOutputType | null;
+};
+export type GetPagoGroupByPayload<T extends PagoGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<PagoGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof PagoGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], PagoGroupByOutputType[P]> : Prisma.GetScalarType<T[P], PagoGroupByOutputType[P]>;
+}>>;
+export type PagoWhereInput = {
+    AND?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[];
+    OR?: Prisma.PagoWhereInput[];
+    NOT?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[];
+    id?: Prisma.IntFilter<"Pago"> | number;
+    pedidoId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    ventaId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    metodo?: Prisma.EnumMetodoPagoFilter<"Pago"> | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFilter<"Pago"> | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    referencia?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    respuestaMockPay?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    fechaPago?: Prisma.DateTimeNullableFilter<"Pago"> | Date | string | null;
+    creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+    actualizadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+    pedido?: Prisma.XOR<Prisma.PedidoNullableScalarRelationFilter, Prisma.PedidoWhereInput> | null;
+    venta?: Prisma.XOR<Prisma.VentaNullableScalarRelationFilter, Prisma.VentaWhereInput> | null;
+};
+export type PagoOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    ventaId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    metodo?: Prisma.SortOrder;
+    estado?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+    transaccionId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    referencia?: Prisma.SortOrderInput | Prisma.SortOrder;
+    respuestaMockPay?: Prisma.SortOrderInput | Prisma.SortOrder;
+    fechaPago?: Prisma.SortOrderInput | Prisma.SortOrder;
+    creadoEn?: Prisma.SortOrder;
+    actualizadoEn?: Prisma.SortOrder;
+    pedido?: Prisma.PedidoOrderByWithRelationInput;
+    venta?: Prisma.VentaOrderByWithRelationInput;
+};
+export type PagoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number;
+    transaccionId?: string;
+    AND?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[];
+    OR?: Prisma.PagoWhereInput[];
+    NOT?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[];
+    pedidoId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    ventaId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    metodo?: Prisma.EnumMetodoPagoFilter<"Pago"> | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFilter<"Pago"> | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    referencia?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    respuestaMockPay?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    fechaPago?: Prisma.DateTimeNullableFilter<"Pago"> | Date | string | null;
+    creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+    actualizadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+    pedido?: Prisma.XOR<Prisma.PedidoNullableScalarRelationFilter, Prisma.PedidoWhereInput> | null;
+    venta?: Prisma.XOR<Prisma.VentaNullableScalarRelationFilter, Prisma.VentaWhereInput> | null;
+}, "id" | "transaccionId">;
+export type PagoOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    ventaId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    metodo?: Prisma.SortOrder;
+    estado?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+    transaccionId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    referencia?: Prisma.SortOrderInput | Prisma.SortOrder;
+    respuestaMockPay?: Prisma.SortOrderInput | Prisma.SortOrder;
+    fechaPago?: Prisma.SortOrderInput | Prisma.SortOrder;
+    creadoEn?: Prisma.SortOrder;
+    actualizadoEn?: Prisma.SortOrder;
+    _count?: Prisma.PagoCountOrderByAggregateInput;
+    _avg?: Prisma.PagoAvgOrderByAggregateInput;
+    _max?: Prisma.PagoMaxOrderByAggregateInput;
+    _min?: Prisma.PagoMinOrderByAggregateInput;
+    _sum?: Prisma.PagoSumOrderByAggregateInput;
+};
+export type PagoScalarWhereWithAggregatesInput = {
+    AND?: Prisma.PagoScalarWhereWithAggregatesInput | Prisma.PagoScalarWhereWithAggregatesInput[];
+    OR?: Prisma.PagoScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.PagoScalarWhereWithAggregatesInput | Prisma.PagoScalarWhereWithAggregatesInput[];
+    id?: Prisma.IntWithAggregatesFilter<"Pago"> | number;
+    pedidoId?: Prisma.IntNullableWithAggregatesFilter<"Pago"> | number | null;
+    ventaId?: Prisma.IntNullableWithAggregatesFilter<"Pago"> | number | null;
+    metodo?: Prisma.EnumMetodoPagoWithAggregatesFilter<"Pago"> | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoWithAggregatesFilter<"Pago"> | $Enums.EstadoPago;
+    monto?: Prisma.DecimalWithAggregatesFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null;
+    referencia?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null;
+    respuestaMockPay?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null;
+    fechaPago?: Prisma.DateTimeNullableWithAggregatesFilter<"Pago"> | Date | string | null;
+    creadoEn?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string;
+    actualizadoEn?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string;
+};
+export type PagoCreateInput = {
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+    pedido?: Prisma.PedidoCreateNestedOneWithoutPagosInput;
+    venta?: Prisma.VentaCreateNestedOneWithoutPagosInput;
+};
+export type PagoUncheckedCreateInput = {
+    id?: number;
+    pedidoId?: number | null;
+    ventaId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoUpdateInput = {
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    pedido?: Prisma.PedidoUpdateOneWithoutPagosNestedInput;
+    venta?: Prisma.VentaUpdateOneWithoutPagosNestedInput;
+};
+export type PagoUncheckedUpdateInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    ventaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoCreateManyInput = {
+    id?: number;
+    pedidoId?: number | null;
+    ventaId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoUpdateManyMutationInput = {
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoUncheckedUpdateManyInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    ventaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoListRelationFilter = {
+    every?: Prisma.PagoWhereInput;
+    some?: Prisma.PagoWhereInput;
+    none?: Prisma.PagoWhereInput;
+};
+export type PagoOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type PagoCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrder;
+    ventaId?: Prisma.SortOrder;
+    metodo?: Prisma.SortOrder;
+    estado?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+    transaccionId?: Prisma.SortOrder;
+    referencia?: Prisma.SortOrder;
+    respuestaMockPay?: Prisma.SortOrder;
+    fechaPago?: Prisma.SortOrder;
+    creadoEn?: Prisma.SortOrder;
+    actualizadoEn?: Prisma.SortOrder;
+};
+export type PagoAvgOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrder;
+    ventaId?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+};
+export type PagoMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrder;
+    ventaId?: Prisma.SortOrder;
+    metodo?: Prisma.SortOrder;
+    estado?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+    transaccionId?: Prisma.SortOrder;
+    referencia?: Prisma.SortOrder;
+    respuestaMockPay?: Prisma.SortOrder;
+    fechaPago?: Prisma.SortOrder;
+    creadoEn?: Prisma.SortOrder;
+    actualizadoEn?: Prisma.SortOrder;
+};
+export type PagoMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrder;
+    ventaId?: Prisma.SortOrder;
+    metodo?: Prisma.SortOrder;
+    estado?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+    transaccionId?: Prisma.SortOrder;
+    referencia?: Prisma.SortOrder;
+    respuestaMockPay?: Prisma.SortOrder;
+    fechaPago?: Prisma.SortOrder;
+    creadoEn?: Prisma.SortOrder;
+    actualizadoEn?: Prisma.SortOrder;
+};
+export type PagoSumOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    pedidoId?: Prisma.SortOrder;
+    ventaId?: Prisma.SortOrder;
+    monto?: Prisma.SortOrder;
+};
+export type PagoCreateNestedManyWithoutPedidoInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput> | Prisma.PagoCreateWithoutPedidoInput[] | Prisma.PagoUncheckedCreateWithoutPedidoInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutPedidoInput | Prisma.PagoCreateOrConnectWithoutPedidoInput[];
+    createMany?: Prisma.PagoCreateManyPedidoInputEnvelope;
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+};
+export type PagoUncheckedCreateNestedManyWithoutPedidoInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput> | Prisma.PagoCreateWithoutPedidoInput[] | Prisma.PagoUncheckedCreateWithoutPedidoInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutPedidoInput | Prisma.PagoCreateOrConnectWithoutPedidoInput[];
+    createMany?: Prisma.PagoCreateManyPedidoInputEnvelope;
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+};
+export type PagoUpdateManyWithoutPedidoNestedInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput> | Prisma.PagoCreateWithoutPedidoInput[] | Prisma.PagoUncheckedCreateWithoutPedidoInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutPedidoInput | Prisma.PagoCreateOrConnectWithoutPedidoInput[];
+    upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutPedidoInput | Prisma.PagoUpsertWithWhereUniqueWithoutPedidoInput[];
+    createMany?: Prisma.PagoCreateManyPedidoInputEnvelope;
+    set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    update?: Prisma.PagoUpdateWithWhereUniqueWithoutPedidoInput | Prisma.PagoUpdateWithWhereUniqueWithoutPedidoInput[];
+    updateMany?: Prisma.PagoUpdateManyWithWhereWithoutPedidoInput | Prisma.PagoUpdateManyWithWhereWithoutPedidoInput[];
+    deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+};
+export type PagoUncheckedUpdateManyWithoutPedidoNestedInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput> | Prisma.PagoCreateWithoutPedidoInput[] | Prisma.PagoUncheckedCreateWithoutPedidoInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutPedidoInput | Prisma.PagoCreateOrConnectWithoutPedidoInput[];
+    upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutPedidoInput | Prisma.PagoUpsertWithWhereUniqueWithoutPedidoInput[];
+    createMany?: Prisma.PagoCreateManyPedidoInputEnvelope;
+    set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    update?: Prisma.PagoUpdateWithWhereUniqueWithoutPedidoInput | Prisma.PagoUpdateWithWhereUniqueWithoutPedidoInput[];
+    updateMany?: Prisma.PagoUpdateManyWithWhereWithoutPedidoInput | Prisma.PagoUpdateManyWithWhereWithoutPedidoInput[];
+    deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+};
+export type PagoCreateNestedManyWithoutVentaInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput> | Prisma.PagoCreateWithoutVentaInput[] | Prisma.PagoUncheckedCreateWithoutVentaInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutVentaInput | Prisma.PagoCreateOrConnectWithoutVentaInput[];
+    createMany?: Prisma.PagoCreateManyVentaInputEnvelope;
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+};
+export type PagoUncheckedCreateNestedManyWithoutVentaInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput> | Prisma.PagoCreateWithoutVentaInput[] | Prisma.PagoUncheckedCreateWithoutVentaInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutVentaInput | Prisma.PagoCreateOrConnectWithoutVentaInput[];
+    createMany?: Prisma.PagoCreateManyVentaInputEnvelope;
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+};
+export type PagoUpdateManyWithoutVentaNestedInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput> | Prisma.PagoCreateWithoutVentaInput[] | Prisma.PagoUncheckedCreateWithoutVentaInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutVentaInput | Prisma.PagoCreateOrConnectWithoutVentaInput[];
+    upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutVentaInput | Prisma.PagoUpsertWithWhereUniqueWithoutVentaInput[];
+    createMany?: Prisma.PagoCreateManyVentaInputEnvelope;
+    set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    update?: Prisma.PagoUpdateWithWhereUniqueWithoutVentaInput | Prisma.PagoUpdateWithWhereUniqueWithoutVentaInput[];
+    updateMany?: Prisma.PagoUpdateManyWithWhereWithoutVentaInput | Prisma.PagoUpdateManyWithWhereWithoutVentaInput[];
+    deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+};
+export type PagoUncheckedUpdateManyWithoutVentaNestedInput = {
+    create?: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput> | Prisma.PagoCreateWithoutVentaInput[] | Prisma.PagoUncheckedCreateWithoutVentaInput[];
+    connectOrCreate?: Prisma.PagoCreateOrConnectWithoutVentaInput | Prisma.PagoCreateOrConnectWithoutVentaInput[];
+    upsert?: Prisma.PagoUpsertWithWhereUniqueWithoutVentaInput | Prisma.PagoUpsertWithWhereUniqueWithoutVentaInput[];
+    createMany?: Prisma.PagoCreateManyVentaInputEnvelope;
+    set?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    disconnect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    delete?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    connect?: Prisma.PagoWhereUniqueInput | Prisma.PagoWhereUniqueInput[];
+    update?: Prisma.PagoUpdateWithWhereUniqueWithoutVentaInput | Prisma.PagoUpdateWithWhereUniqueWithoutVentaInput[];
+    updateMany?: Prisma.PagoUpdateManyWithWhereWithoutVentaInput | Prisma.PagoUpdateManyWithWhereWithoutVentaInput[];
+    deleteMany?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+};
+export type EnumEstadoPagoFieldUpdateOperationsInput = {
+    set?: $Enums.EstadoPago;
+};
+export type PagoCreateWithoutPedidoInput = {
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+    venta?: Prisma.VentaCreateNestedOneWithoutPagosInput;
+};
+export type PagoUncheckedCreateWithoutPedidoInput = {
+    id?: number;
+    ventaId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoCreateOrConnectWithoutPedidoInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    create: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput>;
+};
+export type PagoCreateManyPedidoInputEnvelope = {
+    data: Prisma.PagoCreateManyPedidoInput | Prisma.PagoCreateManyPedidoInput[];
+    skipDuplicates?: boolean;
+};
+export type PagoUpsertWithWhereUniqueWithoutPedidoInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    update: Prisma.XOR<Prisma.PagoUpdateWithoutPedidoInput, Prisma.PagoUncheckedUpdateWithoutPedidoInput>;
+    create: Prisma.XOR<Prisma.PagoCreateWithoutPedidoInput, Prisma.PagoUncheckedCreateWithoutPedidoInput>;
+};
+export type PagoUpdateWithWhereUniqueWithoutPedidoInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    data: Prisma.XOR<Prisma.PagoUpdateWithoutPedidoInput, Prisma.PagoUncheckedUpdateWithoutPedidoInput>;
+};
+export type PagoUpdateManyWithWhereWithoutPedidoInput = {
+    where: Prisma.PagoScalarWhereInput;
+    data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutPedidoInput>;
+};
+export type PagoScalarWhereInput = {
+    AND?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+    OR?: Prisma.PagoScalarWhereInput[];
+    NOT?: Prisma.PagoScalarWhereInput | Prisma.PagoScalarWhereInput[];
+    id?: Prisma.IntFilter<"Pago"> | number;
+    pedidoId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    ventaId?: Prisma.IntNullableFilter<"Pago"> | number | null;
+    metodo?: Prisma.EnumMetodoPagoFilter<"Pago"> | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFilter<"Pago"> | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    referencia?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    respuestaMockPay?: Prisma.StringNullableFilter<"Pago"> | string | null;
+    fechaPago?: Prisma.DateTimeNullableFilter<"Pago"> | Date | string | null;
+    creadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+    actualizadoEn?: Prisma.DateTimeFilter<"Pago"> | Date | string;
+};
+export type PagoCreateWithoutVentaInput = {
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+    pedido?: Prisma.PedidoCreateNestedOneWithoutPagosInput;
+};
+export type PagoUncheckedCreateWithoutVentaInput = {
+    id?: number;
+    pedidoId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoCreateOrConnectWithoutVentaInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    create: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput>;
+};
+export type PagoCreateManyVentaInputEnvelope = {
+    data: Prisma.PagoCreateManyVentaInput | Prisma.PagoCreateManyVentaInput[];
+    skipDuplicates?: boolean;
+};
+export type PagoUpsertWithWhereUniqueWithoutVentaInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    update: Prisma.XOR<Prisma.PagoUpdateWithoutVentaInput, Prisma.PagoUncheckedUpdateWithoutVentaInput>;
+    create: Prisma.XOR<Prisma.PagoCreateWithoutVentaInput, Prisma.PagoUncheckedCreateWithoutVentaInput>;
+};
+export type PagoUpdateWithWhereUniqueWithoutVentaInput = {
+    where: Prisma.PagoWhereUniqueInput;
+    data: Prisma.XOR<Prisma.PagoUpdateWithoutVentaInput, Prisma.PagoUncheckedUpdateWithoutVentaInput>;
+};
+export type PagoUpdateManyWithWhereWithoutVentaInput = {
+    where: Prisma.PagoScalarWhereInput;
+    data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyWithoutVentaInput>;
+};
+export type PagoCreateManyPedidoInput = {
+    id?: number;
+    ventaId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoUpdateWithoutPedidoInput = {
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    venta?: Prisma.VentaUpdateOneWithoutPagosNestedInput;
+};
+export type PagoUncheckedUpdateWithoutPedidoInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    ventaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoUncheckedUpdateManyWithoutPedidoInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    ventaId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoCreateManyVentaInput = {
+    id?: number;
+    pedidoId?: number | null;
+    metodo: $Enums.MetodoPago;
+    estado?: $Enums.EstadoPago;
+    monto: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: string | null;
+    referencia?: string | null;
+    respuestaMockPay?: string | null;
+    fechaPago?: Date | string | null;
+    creadoEn?: Date | string;
+    actualizadoEn?: Date | string;
+};
+export type PagoUpdateWithoutVentaInput = {
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    pedido?: Prisma.PedidoUpdateOneWithoutPagosNestedInput;
+};
+export type PagoUncheckedUpdateWithoutVentaInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoUncheckedUpdateManyWithoutVentaInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    pedidoId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    metodo?: Prisma.EnumMetodoPagoFieldUpdateOperationsInput | $Enums.MetodoPago;
+    estado?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago;
+    monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    transaccionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    referencia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    respuestaMockPay?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    fechaPago?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    creadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    actualizadoEn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type PagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    pedidoId?: boolean;
+    ventaId?: boolean;
+    metodo?: boolean;
+    estado?: boolean;
+    monto?: boolean;
+    transaccionId?: boolean;
+    referencia?: boolean;
+    respuestaMockPay?: boolean;
+    fechaPago?: boolean;
+    creadoEn?: boolean;
+    actualizadoEn?: boolean;
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+}, ExtArgs["result"]["pago"]>;
+export type PagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    pedidoId?: boolean;
+    ventaId?: boolean;
+    metodo?: boolean;
+    estado?: boolean;
+    monto?: boolean;
+    transaccionId?: boolean;
+    referencia?: boolean;
+    respuestaMockPay?: boolean;
+    fechaPago?: boolean;
+    creadoEn?: boolean;
+    actualizadoEn?: boolean;
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+}, ExtArgs["result"]["pago"]>;
+export type PagoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    pedidoId?: boolean;
+    ventaId?: boolean;
+    metodo?: boolean;
+    estado?: boolean;
+    monto?: boolean;
+    transaccionId?: boolean;
+    referencia?: boolean;
+    respuestaMockPay?: boolean;
+    fechaPago?: boolean;
+    creadoEn?: boolean;
+    actualizadoEn?: boolean;
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+}, ExtArgs["result"]["pago"]>;
+export type PagoSelectScalar = {
+    id?: boolean;
+    pedidoId?: boolean;
+    ventaId?: boolean;
+    metodo?: boolean;
+    estado?: boolean;
+    monto?: boolean;
+    transaccionId?: boolean;
+    referencia?: boolean;
+    respuestaMockPay?: boolean;
+    fechaPago?: boolean;
+    creadoEn?: boolean;
+    actualizadoEn?: boolean;
+};
+export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pedidoId" | "ventaId" | "metodo" | "estado" | "monto" | "transaccionId" | "referencia" | "respuestaMockPay" | "fechaPago" | "creadoEn" | "actualizadoEn", ExtArgs["result"]["pago"]>;
+export type PagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+};
+export type PagoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+};
+export type PagoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedido?: boolean | Prisma.Pago$pedidoArgs<ExtArgs>;
+    venta?: boolean | Prisma.Pago$ventaArgs<ExtArgs>;
+};
+export type $PagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "Pago";
+    objects: {
+        pedido: Prisma.$PedidoPayload<ExtArgs> | null;
+        venta: Prisma.$VentaPayload<ExtArgs> | null;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: number;
+        pedidoId: number | null;
+        ventaId: number | null;
+        metodo: $Enums.MetodoPago;
+        estado: $Enums.EstadoPago;
+        monto: runtime.Decimal;
+        transaccionId: string | null;
+        referencia: string | null;
+        respuestaMockPay: string | null;
+        fechaPago: Date | null;
+        creadoEn: Date;
+        actualizadoEn: Date;
+    }, ExtArgs["result"]["pago"]>;
+    composites: {};
+};
+export type PagoGetPayload<S extends boolean | null | undefined | PagoDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$PagoPayload, S>;
+export type PagoCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<PagoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: PagoCountAggregateInputType | true;
+};
+export interface PagoDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['Pago'];
+        meta: {
+            name: 'Pago';
+        };
+    };
+    /**
+     * Find zero or one Pago that matches the filter.
+     * @param {PagoFindUniqueArgs} args - Arguments to find a Pago
+     * @example
+     * // Get one Pago
+     * const pago = await prisma.pago.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PagoFindUniqueArgs>(args: Prisma.SelectSubset<T, PagoFindUniqueArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one Pago that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PagoFindUniqueOrThrowArgs} args - Arguments to find a Pago
+     * @example
+     * // Get one Pago
+     * const pago = await prisma.pago.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PagoFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, PagoFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Pago that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoFindFirstArgs} args - Arguments to find a Pago
+     * @example
+     * // Get one Pago
+     * const pago = await prisma.pago.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PagoFindFirstArgs>(args?: Prisma.SelectSubset<T, PagoFindFirstArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Pago that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoFindFirstOrThrowArgs} args - Arguments to find a Pago
+     * @example
+     * // Get one Pago
+     * const pago = await prisma.pago.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PagoFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, PagoFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more Pagos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Pagos
+     * const pagos = await prisma.pago.findMany()
+     *
+     * // Get first 10 Pagos
+     * const pagos = await prisma.pago.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const pagoWithIdOnly = await prisma.pago.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends PagoFindManyArgs>(args?: Prisma.SelectSubset<T, PagoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a Pago.
+     * @param {PagoCreateArgs} args - Arguments to create a Pago.
+     * @example
+     * // Create one Pago
+     * const Pago = await prisma.pago.create({
+     *   data: {
+     *     // ... data to create a Pago
+     *   }
+     * })
+     *
+     */
+    create<T extends PagoCreateArgs>(args: Prisma.SelectSubset<T, PagoCreateArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many Pagos.
+     * @param {PagoCreateManyArgs} args - Arguments to create many Pagos.
+     * @example
+     * // Create many Pagos
+     * const pago = await prisma.pago.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends PagoCreateManyArgs>(args?: Prisma.SelectSubset<T, PagoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many Pagos and returns the data saved in the database.
+     * @param {PagoCreateManyAndReturnArgs} args - Arguments to create many Pagos.
+     * @example
+     * // Create many Pagos
+     * const pago = await prisma.pago.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many Pagos and only return the `id`
+     * const pagoWithIdOnly = await prisma.pago.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends PagoCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PagoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a Pago.
+     * @param {PagoDeleteArgs} args - Arguments to delete one Pago.
+     * @example
+     * // Delete one Pago
+     * const Pago = await prisma.pago.delete({
+     *   where: {
+     *     // ... filter to delete one Pago
+     *   }
+     * })
+     *
+     */
+    delete<T extends PagoDeleteArgs>(args: Prisma.SelectSubset<T, PagoDeleteArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one Pago.
+     * @param {PagoUpdateArgs} args - Arguments to update one Pago.
+     * @example
+     * // Update one Pago
+     * const pago = await prisma.pago.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends PagoUpdateArgs>(args: Prisma.SelectSubset<T, PagoUpdateArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more Pagos.
+     * @param {PagoDeleteManyArgs} args - Arguments to filter Pagos to delete.
+     * @example
+     * // Delete a few Pagos
+     * const { count } = await prisma.pago.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends PagoDeleteManyArgs>(args?: Prisma.SelectSubset<T, PagoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Pagos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Pagos
+     * const pago = await prisma.pago.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends PagoUpdateManyArgs>(args: Prisma.SelectSubset<T, PagoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Pagos and returns the data updated in the database.
+     * @param {PagoUpdateManyAndReturnArgs} args - Arguments to update many Pagos.
+     * @example
+     * // Update many Pagos
+     * const pago = await prisma.pago.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more Pagos and only return the `id`
+     * const pagoWithIdOnly = await prisma.pago.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends PagoUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PagoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one Pago.
+     * @param {PagoUpsertArgs} args - Arguments to update or create a Pago.
+     * @example
+     * // Update or create a Pago
+     * const pago = await prisma.pago.upsert({
+     *   create: {
+     *     // ... data to create a Pago
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Pago we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PagoUpsertArgs>(args: Prisma.SelectSubset<T, PagoUpsertArgs<ExtArgs>>): Prisma.Prisma__PagoClient<runtime.Types.Result.GetResult<Prisma.$PagoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of Pagos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoCountArgs} args - Arguments to filter Pagos to count.
+     * @example
+     * // Count the number of Pagos
+     * const count = await prisma.pago.count({
+     *   where: {
+     *     // ... the filter for the Pagos we want to count
+     *   }
+     * })
+    **/
+    count<T extends PagoCountArgs>(args?: Prisma.Subset<T, PagoCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], PagoCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a Pago.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PagoAggregateArgs>(args: Prisma.Subset<T, PagoAggregateArgs>): Prisma.PrismaPromise<GetPagoAggregateType<T>>;
+    /**
+     * Group by Pago.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PagoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends PagoGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: PagoGroupByArgs['orderBy'];
+    } : {
+        orderBy?: PagoGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, PagoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPagoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Pago model
+     */
+    readonly fields: PagoFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for Pago.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__PagoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    pedido<T extends Prisma.Pago$pedidoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$pedidoArgs<ExtArgs>>): Prisma.Prisma__PedidoClient<runtime.Types.Result.GetResult<Prisma.$PedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    venta<T extends Prisma.Pago$ventaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pago$ventaArgs<ExtArgs>>): Prisma.Prisma__VentaClient<runtime.Types.Result.GetResult<Prisma.$VentaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the Pago model
+ */
+export interface PagoFieldRefs {
+    readonly id: Prisma.FieldRef<"Pago", 'Int'>;
+    readonly pedidoId: Prisma.FieldRef<"Pago", 'Int'>;
+    readonly ventaId: Prisma.FieldRef<"Pago", 'Int'>;
+    readonly metodo: Prisma.FieldRef<"Pago", 'MetodoPago'>;
+    readonly estado: Prisma.FieldRef<"Pago", 'EstadoPago'>;
+    readonly monto: Prisma.FieldRef<"Pago", 'Decimal'>;
+    readonly transaccionId: Prisma.FieldRef<"Pago", 'String'>;
+    readonly referencia: Prisma.FieldRef<"Pago", 'String'>;
+    readonly respuestaMockPay: Prisma.FieldRef<"Pago", 'String'>;
+    readonly fechaPago: Prisma.FieldRef<"Pago", 'DateTime'>;
+    readonly creadoEn: Prisma.FieldRef<"Pago", 'DateTime'>;
+    readonly actualizadoEn: Prisma.FieldRef<"Pago", 'DateTime'>;
+}
+/**
+ * Pago findUnique
+ */
+export type PagoFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter, which Pago to fetch.
+     */
+    where: Prisma.PagoWhereUniqueInput;
+};
+/**
+ * Pago findUniqueOrThrow
+ */
+export type PagoFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter, which Pago to fetch.
+     */
+    where: Prisma.PagoWhereUniqueInput;
+};
+/**
+ * Pago findFirst
+ */
+export type PagoFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter, which Pago to fetch.
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Pagos to fetch.
+     */
+    orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Pagos.
+     */
+    cursor?: Prisma.PagoWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Pagos from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Pagos.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Pagos.
+     */
+    distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[];
+};
+/**
+ * Pago findFirstOrThrow
+ */
+export type PagoFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter, which Pago to fetch.
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Pagos to fetch.
+     */
+    orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Pagos.
+     */
+    cursor?: Prisma.PagoWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Pagos from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Pagos.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Pagos.
+     */
+    distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[];
+};
+/**
+ * Pago findMany
+ */
+export type PagoFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter, which Pagos to fetch.
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Pagos to fetch.
+     */
+    orderBy?: Prisma.PagoOrderByWithRelationInput | Prisma.PagoOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing Pagos.
+     */
+    cursor?: Prisma.PagoWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Pagos from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Pagos.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Pagos.
+     */
+    distinct?: Prisma.PagoScalarFieldEnum | Prisma.PagoScalarFieldEnum[];
+};
+/**
+ * Pago create
+ */
+export type PagoCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a Pago.
+     */
+    data: Prisma.XOR<Prisma.PagoCreateInput, Prisma.PagoUncheckedCreateInput>;
+};
+/**
+ * Pago createMany
+ */
+export type PagoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Pagos.
+     */
+    data: Prisma.PagoCreateManyInput | Prisma.PagoCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * Pago createManyAndReturn
+ */
+export type PagoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * The data used to create many Pagos.
+     */
+    data: Prisma.PagoCreateManyInput | Prisma.PagoCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Pago update
+ */
+export type PagoUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a Pago.
+     */
+    data: Prisma.XOR<Prisma.PagoUpdateInput, Prisma.PagoUncheckedUpdateInput>;
+    /**
+     * Choose, which Pago to update.
+     */
+    where: Prisma.PagoWhereUniqueInput;
+};
+/**
+ * Pago updateMany
+ */
+export type PagoUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Pagos.
+     */
+    data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyInput>;
+    /**
+     * Filter which Pagos to update
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * Limit how many Pagos to update.
+     */
+    limit?: number;
+};
+/**
+ * Pago updateManyAndReturn
+ */
+export type PagoUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * The data used to update Pagos.
+     */
+    data: Prisma.XOR<Prisma.PagoUpdateManyMutationInput, Prisma.PagoUncheckedUpdateManyInput>;
+    /**
+     * Filter which Pagos to update
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * Limit how many Pagos to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Pago upsert
+ */
+export type PagoUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the Pago to update in case it exists.
+     */
+    where: Prisma.PagoWhereUniqueInput;
+    /**
+     * In case the Pago found by the `where` argument doesn't exist, create a new Pago with this data.
+     */
+    create: Prisma.XOR<Prisma.PagoCreateInput, Prisma.PagoUncheckedCreateInput>;
+    /**
+     * In case the Pago was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.PagoUpdateInput, Prisma.PagoUncheckedUpdateInput>;
+};
+/**
+ * Pago delete
+ */
+export type PagoDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+    /**
+     * Filter which Pago to delete.
+     */
+    where: Prisma.PagoWhereUniqueInput;
+};
+/**
+ * Pago deleteMany
+ */
+export type PagoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Pagos to delete
+     */
+    where?: Prisma.PagoWhereInput;
+    /**
+     * Limit how many Pagos to delete.
+     */
+    limit?: number;
+};
+/**
+ * Pago.pedido
+ */
+export type Pago$pedidoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pedido
+     */
+    select?: Prisma.PedidoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pedido
+     */
+    omit?: Prisma.PedidoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PedidoInclude<ExtArgs> | null;
+    where?: Prisma.PedidoWhereInput;
+};
+/**
+ * Pago.venta
+ */
+export type Pago$ventaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Venta
+     */
+    select?: Prisma.VentaSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Venta
+     */
+    omit?: Prisma.VentaOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.VentaInclude<ExtArgs> | null;
+    where?: Prisma.VentaWhereInput;
+};
+/**
+ * Pago without action
+ */
+export type PagoDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Pago
+     */
+    select?: Prisma.PagoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Pago
+     */
+    omit?: Prisma.PagoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PagoInclude<ExtArgs> | null;
+};
+//# sourceMappingURL=Pago.d.ts.map

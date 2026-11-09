@@ -1,0 +1,1 @@
+{"version":3,"file":"mockpay-webhook.dto.d.ts","sourceRoot":"","sources":["mockpay-webhook.dto.ts"],"names":[],"mappings":"AAGA,oBAAY,oBAAoB;IAC9B,QAAQ,aAAa;IACrB,QAAQ,aAAa;IACrB,SAAS,cAAc;CACxB;AAED,qBAAa,iBAAiB;IAM5B,aAAa,EAAE,MAAM,CAAC;IAOtB,SAAS,EAAE,MAAM,CAAC;IAOlB,MAAM,EAAE,MAAM,CAAC;IAOf,MAAM,EAAE,oBAAoB,CAAC;IAQ7B,WAAW,CAAC,EAAE,MAAM,CAAC;CACtB"}

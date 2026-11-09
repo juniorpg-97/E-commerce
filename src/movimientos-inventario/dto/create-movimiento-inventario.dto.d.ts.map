@@ -1,0 +1,1 @@
+{"version":3,"file":"create-movimiento-inventario.dto.d.ts","sourceRoot":"","sources":["create-movimiento-inventario.dto.ts"],"names":[],"mappings":"AASA,OAAO,EAAE,cAAc,EAAE,MAAM,oCAAoC,CAAC;AAEpE,qBAAa,6BAA6B;IAQxC,YAAY,EAAE,MAAM,CAAC;IASrB,IAAI,EAAE,cAAc,CAAC;IASrB,QAAQ,EAAE,MAAM,CAAC;IASjB,MAAM,CAAC,EAAE,MAAM,CAAC;IAShB,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB"}

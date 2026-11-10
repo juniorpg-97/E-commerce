@@ -39,4 +39,9 @@ export class DireccionesController {
   desactivar(@Param('id') id: string, @Req() req: any) {
     return this.direccionesService.desactivar(+id, req.usuario.id);
   }
+  @Get('mis-direcciones')
+  findMisDirecciones(@Req() request: Request) {
+    const usuario = (request as Request & { usuario: { id: number } }).usuario;
+    return this.direccionesService.findMisDirecciones(usuario.id);
+  }
 }

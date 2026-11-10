@@ -109,4 +109,23 @@ export class DireccionesService {
       },
     });
   }
+  async findMisDirecciones(usuarioId: number) {
+    const cliente = await this.prisma.cliente.findUnique({
+      where: { usuarioId },
+    });
+
+    if (!cliente) {
+      throw new Error('El usuario no tiene un cliente registrado');
+    }
+
+    return this.prisma.direccion.findMany({
+      where: {
+        clienteId: cliente.id,
+        activa: true,
+      },
+      orderBy: {
+        creadoEn: 'desc',
+      },
+    });
+  }
 }

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { CategoriasService } from './categorias.service.js';
 import { CreateCategoriaDto } from './dto/create-categoria.dto.js';
@@ -68,6 +69,21 @@ export class CategoriasController {
   })
   findAll() {
     return this.categoriasService.findAll();
+  }
+
+  // ✅ NUEVO ENDPOINT PÚBLICO (sin autenticación)
+  @Get('publicas')
+  @ApiOperation({
+    summary: 'Listar categorías públicas',
+    description:
+      'Obtiene todas las categorías activas. NO requiere autenticación.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de categorías públicas obtenida correctamente',
+  })
+  findAllPublicas() {
+    return this.categoriasService.findAllPublicas();
   }
 
   @Get(':id')

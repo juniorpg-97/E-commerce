@@ -85,4 +85,14 @@ export class CategoriasService {
       },
     });
   }
+  async findAllPublicas() {
+    return this.prisma.categoria.findMany({
+      where: {
+        activa: true, // ← Campo correcto según tu schema
+      },
+      orderBy: {
+        nombre: 'asc',
+      },
+    });
+  }
 }

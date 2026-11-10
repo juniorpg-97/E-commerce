@@ -188,4 +188,33 @@ export class CarritoController {
 
     return this.carritoService.vaciarCarrito(usuario.id);
   }
+  @Post('sincronizar')
+  @ApiOperation({
+    summary: 'Sincronizar carrito completo',
+    description:
+      'Reemplaza el contenido del carrito activo del cliente con los detalles proporcionados. Útil para el checkout desde el frontend.',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Carrito sincronizado correctamente.',
+  })
+  sincronizar(
+    @Body()
+    dto: import('./dto/sincronizar-carrito.dto.js').SincronizarCarritoDto,
+    @Req() request: Request,
+  ) {
+    const usuario = (
+      request as Request & {
+        usuario: {
+          id: number;
+          email: string;
+          rol: string;
+          nombre: string;
+          apellido: string;
+        };
+      }
+    ).usuario;
+
+    return this.carritoService.sincronizar(dto, usuario.id);
+  }
 }

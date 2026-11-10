@@ -335,4 +335,64 @@ export class CarritoService {
       mensaje: 'Carrito vaciado correctamente',
     };
   }
+  async sincronizar(
+    dto: import('./dto/sincronizar-carrito.dto.js').SincronizarCarritoDto,
+    usuarioId: number,
+  ) {
+    const cliente = await this.obtenerCliente(usuarioId);
+
+    // 1. Desactivar cualquier carrito anterior del cliente
+    await this.prisma.carrito.updateMany({
+      where: { clienteId: cliente.id, activo: true },
+      data: { activo: false },
+    });
+
+    // 2. Validar stock de todos los productos antes de crear
+    for (const item of dto.detalles) {
+      const producto = await this.prisma.producto.findUnique({
+        where: { id: item.productoId },
+        include: { inventario: true },
+      });
+
+      if (!producto || !producto.activo) {
+        throw new Error(
+          `El producto con ID ${item.productoId} no está disponible`,
+        );
+      }
+      if (!producto.inventario || producto.inventario.stock < item.cantidad) {
+        throw new Error(
+          `Stock insuficiente para "${producto.nombre}". Disponible: ${producto.inventario?.stock ?? 0}`,
+        );
+      }
+    }
+
+    // 3. Crear nuevo carrito activo con los detalles
+    const carrito = await this.prisma.carrito.create({
+      data: {
+        clienteId: cliente.id,
+        activo: true,
+        detalles: {
+          create: dto.detalles.map((d) => ({
+            productoId: d.productoId,
+            cantidad: d.cantidad,
+            precioUnitario: d.precioUnitario,
+          })),
+        },
+      },
+      include: {
+        detalles: {
+          include: {
+            producto: {
+              select: { id: true, nombre: true, precioVenta: true },
+            },
+          },
+        },
+      },
+    });
+
+    return {
+      mensaje: 'Carrito sincronizado correctamente',
+      carritoId: carrito.id,
+    };
+  }
 }

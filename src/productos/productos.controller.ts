@@ -95,6 +95,20 @@ export class ProductosController {
     return this.productosService.findAll(req.usuario.rol, categoriaId);
   }
 
+  @Get('publicos')
+  @ApiOperation({
+    summary: 'Listar productos públicos',
+    description:
+      'Obtiene todos los productos activos con stock disponible. NO requiere autenticación. El costo de adquisición NO se incluye en la respuesta.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de productos públicos obtenida correctamente',
+  })
+  findAllPublicos(@Query('categoriaId') categoriaId?: string) {
+    return this.productosService.findAllPublicos(categoriaId);
+  }
+
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({

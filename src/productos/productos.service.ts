@@ -173,4 +173,31 @@ export class ProductosService {
       });
     });
   }
+  async findAllPublicos(categoriaId?: string) {
+    const productos = await this.prisma.producto.findMany({
+      where: {
+        activo: true,
+        inventario: {
+          stock: {
+            gt: 0,
+          },
+        },
+        ...(categoriaId
+          ? {
+              categoriaId: Number(categoriaId),
+            }
+          : {}),
+      },
+      orderBy: {
+        id: 'asc',
+      },
+      include: {
+        categoria: true,
+        inventario: true,
+      },
+    });
+
+    // Excluir costoAdquisicion de la respuesta
+    return productos.map(({ costoAdquisicion, ...producto }) => producto);
+  }
 }

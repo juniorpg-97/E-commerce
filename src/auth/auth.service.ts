@@ -12,10 +12,12 @@ export class AuthService {
     private readonly usuariosService: UsuariosService,
     private readonly configService: ConfigService,
   ) {}
+
   async register(createUsuarioDto: CreateUsuarioDto) {
     return this.usuariosService.create(createUsuarioDto);
   }
 
+  // ✅ 1. Reutilizamos este método para validar
   async validateUser(email: string, password: string) {
     const usuario = await this.usuariosService.findByEmail(email);
     if (!usuario) {
@@ -28,6 +30,7 @@ export class AuthService {
     return usuario;
   }
 
+  // ✅ 2. Reutilizamos este método para generar el token
   async generateToken(usuario: {
     id: number;
     email: string;
@@ -42,7 +45,7 @@ export class AuthService {
       expiresIn: expiresIn as SignOptions['expiresIn'],
     };
 
-    const token = jwt.sign(
+    return jwt.sign(
       {
         id: usuario.id,
         email: usuario.email,
@@ -53,40 +56,33 @@ export class AuthService {
       secret,
       options,
     );
-
-    return {
-      token,
-    };
   }
 
+  // ✅ 3. Login limpio, reutilizando los métodos anteriores y devolviendo el usuario
   async login(loginDto: LoginDto) {
-    const usuario = await this.usuariosService.findByEmail(loginDto.email);
-    if (!usuario) {
-      throw new UnauthorizedException('Credenciales invalidas');
-    }
-    const isMatch = await bcrypt.compare(loginDto.password, usuario.password);
-    if (!isMatch) {
-      throw new UnauthorizedException('Credenciales invalidas');
-    }
-    const secret = this.configService.getOrThrow<string>('JWT_SECRET');
-    const expiresIn = this.configService.getOrThrow<string>('JWT_EXPIRES_IN');
-    const options: SignOptions = {
-      expiresIn: expiresIn as SignOptions['expiresIn'],
-    };
-    const token = jwt.sign(
-      {
-        id: usuario.id,
-        email: usuario.email,
-        rol: usuario.rol,
-        nombre: usuario.nombre,
-        apellido: usuario.apellido,
-      },
-      secret,
-      options,
-    );
+    // Validamos al usuario (si falla, lanza la excepción automáticamente)
+    const usuario = await this.validateUser(loginDto.email, loginDto.password);
+
+    // Generamos el token
+    const token = await this.generateToken({
+      id: usuario.id,
+      email: usuario.email,
+      rol: usuario.rol,
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+    });
+
+    // ✅ DEVOLVEMOS EL TOKEN Y LOS DATOS DEL USUARIO EXPLÍCITAMENTE
     return {
       mensaje: 'Credenciales correctas',
       token,
+      usuario: {
+        id: usuario.id,
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        email: usuario.email,
+        rol: usuario.rol,
+      },
     };
   }
 }

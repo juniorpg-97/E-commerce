@@ -42,15 +42,7 @@ export class AuthController {
     status: 401,
     description: 'Credenciales inválidas',
   })
-  async login(@Request() req: ExpressRequest) {
-    return this.authService.generateToken(
-      req.user as {
-        id: number;
-        email: string;
-        rol: string;
-        nombre: string;
-        apellido: string;
-      },
-    );
+  async login(@Body() loginDto: LoginDto) {
+    return this.authService.login(loginDto);
   }
 }

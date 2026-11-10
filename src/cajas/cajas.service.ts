@@ -53,4 +53,20 @@ export class CajasService {
   remove(id: number) {
     return `This action removes a #${id} caja`;
   }
+  async obtenerCajaActiva(usuarioId: number) {
+    const caja = await this.prisma.caja.findFirst({
+      where: {
+        usuarioId: usuarioId,
+        estado: 'ABIERTA',
+      },
+    });
+
+    if (!caja) {
+      throw new Error(
+        'No tienes una caja abierta. Por favor, abre una caja antes de realizar ventas.',
+      );
+    }
+
+    return caja;
+  }
 }

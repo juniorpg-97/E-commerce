@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -12,7 +12,6 @@ import { CreateCajaDto } from './dto/create-caja.dto.js';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/guards/roles.guard.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
-import { Rol } from '../../generated/prisma/client.js';
 
 @ApiTags('Cajas')
 @ApiBearerAuth('JWT-auth')
@@ -28,10 +27,7 @@ export class CajasController {
     description:
       'Abre una nueva caja para el usuario autenticado con un monto inicial.',
   })
-  @ApiResponse({
-    status: 201,
-    description: 'Caja abierta correctamente.',
-  })
+  @ApiResponse({ status: 201, description: 'Caja abierta correctamente.' })
   @ApiResponse({
     status: 401,
     description: 'Token no proporcionado, inválido o expirado.',
@@ -54,5 +50,34 @@ export class CajasController {
     ).usuario;
 
     return this.cajasService.create(createCajaDto, usuario.id);
+  }
+
+  // ✅ NUEVO: Obtener la caja activa del usuario autenticado
+  @Get('activa')
+  @Roles('ADMINISTRADOR', 'CAJERO')
+  @ApiOperation({
+    summary: 'Obtener caja activa',
+    description:
+      'Devuelve la información de la caja actualmente abierta por el usuario autenticado.',
+  })
+  @ApiResponse({ status: 200, description: 'Caja activa encontrada.' })
+  @ApiResponse({
+    status: 404,
+    description: 'El usuario no tiene una caja abierta.',
+  })
+  getCajaActiva(@Req() request: Request) {
+    const usuario = (
+      request as Request & {
+        usuario: {
+          id: number;
+          email: string;
+          rol: string;
+          nombre: string;
+          apellido: string;
+        };
+      }
+    ).usuario;
+
+    return this.cajasService.obtenerCajaActiva(usuario.id);
   }
 }

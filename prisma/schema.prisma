@@ -163,6 +163,7 @@ model Producto {
   descripcion      String?
   costoAdquisicion Decimal  @db.Decimal(10, 2)
   precioVenta      Decimal  @db.Decimal(10, 2)
+  imagen       String?
   activo           Boolean  @default(true)
   creadoEn         DateTime @default(now())
   actualizadoEn    DateTime @updatedAt

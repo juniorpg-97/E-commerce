@@ -151,6 +151,7 @@ export const ProductoScalarFieldEnum = {
   descripcion: 'descripcion',
   costoAdquisicion: 'costoAdquisicion',
   precioVenta: 'precioVenta',
+  imagen: 'imagen',
   activo: 'activo',
   creadoEn: 'creadoEn',
   actualizadoEn: 'actualizadoEn'

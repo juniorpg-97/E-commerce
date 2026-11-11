@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCajaDto } from './dto/create-caja.dto.js';
 import { CerrarCajaDto } from './dto/cerrar-caja.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -15,7 +19,10 @@ export class CajasService {
     });
 
     if (cajaAbierta) {
-      throw new Error('El usuario ya tiene una caja abierta');
+      // ✅ CAMBIO: Usar ConflictException (HTTP 409) en lugar de Error nativo
+      throw new ConflictException(
+        'Ya tienes una caja abierta. Debes cerrarla antes de abrir una nueva.',
+      );
     }
 
     const caja = await this.prisma.caja.create({
@@ -36,7 +43,8 @@ export class CajasService {
     });
 
     if (!caja) {
-      throw new Error(
+      // ✅ CAMBIO: Usar NotFoundException (HTTP 404)
+      throw new NotFoundException(
         'No tienes una caja abierta. Por favor, abre una caja antes de realizar ventas.',
       );
     }
@@ -44,37 +52,27 @@ export class CajasService {
     return caja;
   }
 
-  // ✅ NUEVO: Obtener datos de conciliación de una caja específica
   async obtenerConciliacion(cajaId: number) {
     const caja = await this.prisma.caja.findUnique({
       where: { id: cajaId },
       include: {
         ventas: {
-          where: { tipo: 'POS' }, // Solo ventas de mostrador
-          select: {
-            id: true,
-            totalVenta: true,
-            metodoPago: true,
-            fecha: true,
-          },
+          where: { tipo: 'POS' },
+          select: { id: true, totalVenta: true, metodoPago: true, fecha: true },
         },
-        usuario: {
-          select: { nombre: true, apellido: true },
-        },
+        usuario: { select: { nombre: true, apellido: true } },
       },
     });
 
     if (!caja) {
-      throw new Error('La caja no existe');
+      throw new NotFoundException('La caja no existe');
     }
 
-    // Calcular suma de ventas POS
     const totalVentasPOS = caja.ventas.reduce(
       (suma, venta) => suma + Number(venta.totalVenta),
       0,
     );
 
-    // montoEsperado = montoInicial + totalVentasPOS
     const montoEsperado = Number(caja.montoInicial) + totalVentasPOS;
 
     return {
@@ -92,24 +90,20 @@ export class CajasService {
     };
   }
 
-  // ✅ NUEVO: Cerrar caja y registrar conciliación
   async cerrarCaja(cajaId: number, dto: CerrarCajaDto, usuarioId: number) {
     const caja = await this.prisma.caja.findUnique({
       where: { id: cajaId },
-      include: {
-        ventas: { where: { tipo: 'POS' } },
-      },
+      include: { ventas: { where: { tipo: 'POS' } } },
     });
 
     if (!caja) {
-      throw new Error('La caja no existe');
+      throw new NotFoundException('La caja no existe');
     }
 
     if (caja.estado === 'CERRADA') {
-      throw new Error('Esta caja ya está cerrada');
+      throw new ConflictException('Esta caja ya está cerrada');
     }
 
-    // Calcular montos
     const totalVentasPOS = caja.ventas.reduce(
       (suma, venta) => suma + Number(venta.totalVenta),
       0,
@@ -117,7 +111,6 @@ export class CajasService {
     const montoEsperado = Number(caja.montoInicial) + totalVentasPOS;
     const diferencia = dto.montoContado - montoEsperado;
 
-    // Actualizar caja
     const cajaCerrada = await this.prisma.caja.update({
       where: { id: cajaId },
       data: {
@@ -145,22 +138,17 @@ export class CajasService {
   async findAll() {
     return this.prisma.caja.findMany({
       include: {
-        usuario: {
-          select: { nombre: true, apellido: true },
-        },
+        usuario: { select: { nombre: true, apellido: true } },
       },
       orderBy: { creadoEn: 'desc' },
     });
   }
 
-  // ✅ NUEVO: Historial de cajas (para el admin)
   async obtenerHistorial() {
     return this.prisma.caja.findMany({
       where: { estado: 'CERRADA' },
       include: {
-        usuario: {
-          select: { nombre: true, apellido: true },
-        },
+        usuario: { select: { nombre: true, apellido: true } },
       },
       orderBy: { fechaCierre: 'desc' },
     });

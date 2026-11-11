@@ -142,6 +142,17 @@ export class CajasService {
     };
   }
 
+  async findAll() {
+    return this.prisma.caja.findMany({
+      include: {
+        usuario: {
+          select: { nombre: true, apellido: true },
+        },
+      },
+      orderBy: { creadoEn: 'desc' },
+    });
+  }
+
   // ✅ NUEVO: Historial de cajas (para el admin)
   async obtenerHistorial() {
     return this.prisma.caja.findMany({

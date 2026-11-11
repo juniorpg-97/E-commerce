@@ -85,6 +85,15 @@ export class CajasController {
     const usuario = (request as Request & { usuario: { id: number } }).usuario;
     return this.cajasService.cerrarCaja(+id, dto, usuario.id);
   }
+  @Get()
+  @Roles('ADMINISTRADOR')
+  @ApiOperation({
+    summary: 'Listar todas las cajas',
+    description: 'Exclusivo para administradores.',
+  })
+  findAll() {
+    return this.cajasService.findAll();
+  }
 
   // ✅ NUEVO: Historial de cajas cerradas
   @Get('historial')

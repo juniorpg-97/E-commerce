@@ -1,7 +1,11 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CreatePedidoDto } from './dto/create-pedido.dto.js';
-import { EstadoPedido, TipoVenta } from '../../generated/prisma/enums.js';
+import { EstadoPedido, TipoVenta, Rol } from '../../generated/prisma/enums.js'; // ✅ Importar Rol
 import { UpdatePedidoDto } from './dto/update-pedido.dto.js';
 
 @Injectable()
@@ -16,72 +20,54 @@ export class PedidosService {
     });
 
     if (!cliente) {
-      throw new Error('El usuario no tiene un cliente registrado');
+      throw new NotFoundException(
+        'El usuario no tiene un perfil de cliente registrado',
+      );
     }
 
     const direccion = await this.prisma.direccion.findFirst({
-      where: {
-        id: direccionId,
-        clienteId: cliente.id,
-        activa: true,
-      },
+      where: { id: direccionId, clienteId: cliente.id, activa: true },
     });
 
     if (!direccion) {
-      throw new Error(
+      throw new NotFoundException(
         'La dirección no existe, está inactiva o no pertenece al cliente',
       );
     }
 
     const carrito = await this.prisma.carrito.findFirst({
-      where: {
-        clienteId: cliente.id,
-        activo: true,
-      },
+      where: { clienteId: cliente.id, activo: true },
       include: {
         detalles: {
-          include: {
-            producto: {
-              include: {
-                inventario: true,
-              },
-            },
-          },
+          include: { producto: { include: { inventario: true } } },
         },
       },
     });
 
-    if (!carrito) {
-      throw new Error('El cliente no tiene un carrito activo');
-    }
-
-    if (carrito.detalles.length === 0) {
-      throw new Error('El carrito está vacío');
+    if (!carrito || carrito.detalles.length === 0) {
+      throw new BadRequestException('El carrito está vacío o no existe');
     }
 
     for (const detalle of carrito.detalles) {
       if (!detalle.producto.activo) {
-        throw new Error(
+        throw new BadRequestException(
           `El producto "${detalle.producto.nombre}" no está disponible`,
         );
       }
-
       if (!detalle.producto.inventario) {
-        throw new Error(
+        throw new BadRequestException(
           `El producto "${detalle.producto.nombre}" no tiene inventario`,
         );
       }
-
       if (detalle.producto.inventario.stock < detalle.cantidad) {
-        throw new Error(
-          `Stock insuficiente para "${detalle.producto.nombre}". Stock disponible: ${detalle.producto.inventario.stock}`,
+        throw new BadRequestException(
+          `Stock insuficiente para "${detalle.producto.nombre}". Disponible: ${detalle.producto.inventario.stock}`,
         );
       }
     }
 
     const totalPedido = carrito.detalles.reduce(
-      (total, detalle) =>
-        total + Number(detalle.precioUnitario) * detalle.cantidad,
+      (total, d) => total + Number(d.precioUnitario) * d.cantidad,
       0,
     );
 
@@ -92,6 +78,7 @@ export class PedidosService {
           direccionId,
           total: totalPedido,
           metodoPago,
+          estado: EstadoPedido.PENDIENTE, // ✅ Asegurar estado inicial
         },
       });
 
@@ -107,21 +94,14 @@ export class PedidosService {
         });
 
         await tx.inventario.update({
-          where: {
-            id: detalle.producto.inventario!.id,
-          },
-          data: {
-            stock: {
-              decrement: detalle.cantidad,
-            },
-          },
+          where: { id: detalle.producto.inventario!.id },
+          data: { stock: { decrement: detalle.cantidad } },
         });
 
         await tx.movimientoInventario.create({
           data: {
             inventarioId: detalle.producto.inventario!.id,
             usuarioId,
-            detalleVentaId: null,
             tipo: 'VENTA',
             cantidad: detalle.cantidad,
             motivo: 'Salida de inventario por pedido web',
@@ -131,18 +111,11 @@ export class PedidosService {
       }
 
       await tx.carrito.update({
-        where: {
-          id: carrito.id,
-        },
-        data: {
-          activo: false,
-        },
+        where: { id: carrito.id },
+        data: { activo: false },
       });
 
-      return {
-        mensaje: 'Pedido creado correctamente',
-        pedido,
-      };
+      return { mensaje: 'Pedido creado correctamente', pedido };
     });
   }
 
@@ -152,141 +125,125 @@ export class PedidosService {
         cliente: true,
         detalles: {
           include: {
-            producto: {
-              select: {
-                id: true,
-                nombre: true,
-                precioVenta: true,
-              },
-            },
+            producto: { select: { id: true, nombre: true, precioVenta: true } },
           },
         },
         direccion: true,
       },
-      orderBy: {
-        creadoEn: 'desc',
-      },
+      orderBy: { creadoEn: 'desc' },
     });
   }
 
   async findPendientes() {
     return this.prisma.pedido.findMany({
-      where: {
-        estado: EstadoPedido.PENDIENTE,
-      },
+      where: { estado: EstadoPedido.PENDIENTE },
       include: {
         cliente: true,
         detalles: {
           include: {
-            producto: {
-              select: {
-                id: true,
-                nombre: true,
-                precioVenta: true,
-              },
-            },
+            producto: { select: { id: true, nombre: true, precioVenta: true } },
           },
         },
         direccion: true,
       },
-      orderBy: {
-        creadoEn: 'asc',
-      },
+      orderBy: { creadoEn: 'asc' },
     });
   }
 
   async findMisPedidos(usuarioId: number) {
     const cliente = await this.prisma.cliente.findUnique({
-      where: {
-        usuarioId,
-      },
+      where: { usuarioId },
     });
-
-    if (!cliente) {
-      throw new Error('El usuario no tiene un cliente registrado');
-    }
+    if (!cliente)
+      throw new NotFoundException(
+        'El usuario no tiene un perfil de cliente registrado',
+      );
 
     return this.prisma.pedido.findMany({
-      where: {
-        clienteId: cliente.id,
-      },
+      where: { clienteId: cliente.id },
       include: {
         detalles: {
           include: {
-            producto: {
-              select: {
-                id: true,
-                nombre: true,
-                precioVenta: true,
-              },
-            },
+            producto: { select: { id: true, nombre: true, precioVenta: true } },
           },
         },
         direccion: true,
       },
-      orderBy: {
-        creadoEn: 'desc',
-      },
+      orderBy: { creadoEn: 'desc' },
     });
   }
 
   async findOne(id: number) {
-    return this.prisma.pedido.findUnique({
-      where: {
-        id,
-      },
+    const pedido = await this.prisma.pedido.findUnique({
+      where: { id },
       include: {
         cliente: true,
         detalles: {
           include: {
-            producto: {
-              select: {
-                id: true,
-                nombre: true,
-                precioVenta: true,
-              },
-            },
+            producto: { select: { id: true, nombre: true, precioVenta: true } },
           },
         },
         direccion: true,
         venta: true,
       },
     });
+    if (!pedido) throw new NotFoundException(`Pedido #${id} no encontrado`);
+    return pedido;
   }
 
+  // ✅ MÉTODO CORREGIDO
   async cambiarEstado(
     id: number,
     updatePedidoDto: UpdatePedidoDto,
     usuarioId: number,
   ) {
-    const cliente = await this.prisma.cliente.findUnique({
-      where: {
-        usuarioId,
-      },
+    // 1. Obtener rol del usuario para saber si es Staff o Cliente
+    const usuario = await this.prisma.usuario.findUnique({
+      where: { id: usuarioId },
+      select: { rol: true },
     });
 
-    if (!cliente) {
-      throw new Error('El usuario no tiene un cliente registrado');
+    if (!usuario) {
+      throw new NotFoundException('Usuario no encontrado');
     }
 
-    const pedido = await this.prisma.pedido.findFirst({
-      where: {
-        id,
-        clienteId: cliente.id,
-      },
-      include: {
-        detalles: true,
-        venta: true,
-      },
-    });
+    const esStaff =
+      usuario.rol === Rol.ADMINISTRADOR || usuario.rol === Rol.CAJERO;
+
+    // 2. Buscar el pedido
+    let pedido;
+    if (esStaff) {
+      // Staff puede ver cualquier pedido
+      pedido = await this.prisma.pedido.findUnique({
+        where: { id },
+        include: { detalles: true, venta: true },
+      });
+    } else {
+      // Cliente solo ve sus propios pedidos
+      const cliente = await this.prisma.cliente.findUnique({
+        where: { usuarioId },
+      });
+      if (!cliente)
+        throw new NotFoundException(
+          'El usuario no tiene un perfil de cliente registrado',
+        );
+
+      pedido = await this.prisma.pedido.findFirst({
+        where: { id, clienteId: cliente.id },
+        include: { detalles: true, venta: true },
+      });
+    }
 
     if (!pedido) {
-      throw new Error('El pedido no existe o no pertenece al cliente');
+      throw new NotFoundException(
+        `Pedido #${id} no encontrado o no tienes permisos para verlo`,
+      );
     }
 
     const estadoActual = pedido.estado;
     const nuevoEstado = updatePedidoDto.estado;
 
+    // Validación de transiciones
     const transicionesPermitidas: Record<EstadoPedido, EstadoPedido[]> = {
       [EstadoPedido.PENDIENTE]: [EstadoPedido.PAGADO, EstadoPedido.CANCELADO],
       [EstadoPedido.PAGADO]: [
@@ -299,59 +256,41 @@ export class PedidosService {
       [EstadoPedido.CANCELADO]: [],
     };
 
-    if (!transicionesPermitidas[estadoActual].includes(nuevoEstado)) {
+    if (!transicionesPermitidas[estadoActual]?.includes(nuevoEstado)) {
       throw new BadRequestException(
-        `No se puede cambiar el pedido de ${estadoActual} a ${nuevoEstado}`,
+        `Transición no permitida: No se puede cambiar de ${estadoActual} a ${nuevoEstado}`,
       );
     }
 
     return this.prisma.$transaction(async (tx) => {
-      /*
-       * Si el pedido se cancela, devolvemos el stock.
-       */
+      // Lógica de cancelación (devolver stock)
       if (nuevoEstado === EstadoPedido.CANCELADO) {
         for (const detalle of pedido.detalles) {
           const inventario = await tx.inventario.findUnique({
-            where: {
-              productoId: detalle.productoId,
-            },
+            where: { productoId: detalle.productoId },
           });
 
-          if (!inventario) {
-            throw new Error(
-              `No existe inventario para el producto ${detalle.productoId}`,
-            );
-          }
+          if (inventario) {
+            await tx.inventario.update({
+              where: { id: inventario.id },
+              data: { stock: { increment: detalle.cantidad } },
+            });
 
-          await tx.inventario.update({
-            where: {
-              id: inventario.id,
-            },
-            data: {
-              stock: {
-                increment: detalle.cantidad,
+            await tx.movimientoInventario.create({
+              data: {
+                inventarioId: inventario.id,
+                usuarioId,
+                tipo: 'DEVOLUCION',
+                cantidad: detalle.cantidad,
+                motivo: 'Devolución por cancelación de pedido',
+                referencia: `Pedido #${pedido.id}`,
               },
-            },
-          });
-
-          await tx.movimientoInventario.create({
-            data: {
-              inventarioId: inventario.id,
-              usuarioId,
-              detalleVentaId: null,
-              tipo: 'DEVOLUCION',
-              cantidad: detalle.cantidad,
-              motivo: 'Devolución de inventario por cancelación de pedido web',
-              referencia: `Pedido #${pedido.id}`,
-            },
-          });
+            });
+          }
         }
       }
 
-      /*
-       * Si el pedido pasa a PAGADO,
-       * se convierte automáticamente en una Venta WEB.
-       */
+      // Lógica de pago (crear venta WEB)
       if (nuevoEstado === EstadoPedido.PAGADO) {
         if (pedido.venta) {
           throw new BadRequestException(
@@ -370,7 +309,7 @@ export class PedidosService {
             totalVenta: pedido.total,
             metodoPago: pedido.metodoPago,
             estado: 'COMPLETADA',
-            observaciones: `Venta generada automáticamente desde el Pedido #${pedido.id}`,
+            observaciones: `Venta generada desde Pedido #${pedido.id}`,
           },
         });
 
@@ -388,21 +327,13 @@ export class PedidosService {
       }
 
       return tx.pedido.update({
-        where: {
-          id,
-        },
-        data: {
-          estado: nuevoEstado,
-        },
+        where: { id },
+        data: { estado: nuevoEstado },
         include: {
           detalles: {
             include: {
               producto: {
-                select: {
-                  id: true,
-                  nombre: true,
-                  precioVenta: true,
-                },
+                select: { id: true, nombre: true, precioVenta: true },
               },
             },
           },

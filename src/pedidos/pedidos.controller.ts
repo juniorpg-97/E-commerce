@@ -74,7 +74,7 @@ export class PedidosController {
   // Cambiar el estado de su pedido
   @Patch(':id/estado')
   @UseGuards(RolesGuard)
-  @Roles('CLIENTE')
+  @Roles('CAJERO', 'ADMINISTRADOR')
   cambiarEstado(
     @Param('id') id: string,
     @Body() updatePedidoDto: UpdatePedidoDto,

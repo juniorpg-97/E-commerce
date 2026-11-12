@@ -10,7 +10,7 @@ async function bootstrap() {
   });
 
   app.enableCors({
-    origin: ['http://localhost:5173', 'ecommerce-final-seven.vercel.app'], // Ajusta la URL de Vercel cuando la tengas
+    origin: ['http://localhost:5173', 'https://ecommercefront-five.vercel.app'], // Ajusta la URL de Vercel cuando la tengas
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

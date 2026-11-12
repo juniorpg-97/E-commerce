@@ -1,11 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateUsuarioDto } from '../usuarios/dto/create-usuario.dto.js';
+import { RegisterClienteDto } from '../usuarios/dto/register-cliente.dto.js'; // ✅ NUEVO IMPORT
 import { UsuariosService } from '../usuarios/usuarios.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import jwt, { SignOptions } from 'jsonwebtoken';
-// ✅ IMPORTANTE: Necesitamos PrismaService para buscar el cliente
 import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
@@ -13,12 +13,16 @@ export class AuthService {
   constructor(
     private readonly usuariosService: UsuariosService,
     private readonly configService: ConfigService,
-    // ✅ Inyectamos PrismaService
     private readonly prisma: PrismaService,
   ) {}
 
   async register(createUsuarioDto: CreateUsuarioDto) {
     return this.usuariosService.create(createUsuarioDto);
+  }
+
+  // ✅ NUEVO MÉTODO PUENTE PARA EL REGISTRO DE CLIENTES
+  async registerCliente(data: RegisterClienteDto) {
+    return this.usuariosService.createClienteConDireccion(data);
   }
 
   async validateUser(email: string, password: string) {
@@ -33,21 +37,16 @@ export class AuthService {
     return usuario;
   }
 
-  // ✅ MODIFICADO: Ahora acepta clienteId opcional
   async generateToken(usuario: {
     id: number;
     email: string;
     rol: string;
     nombre: string;
     apellido: string;
-    clienteId?: number | null; // ✅ Agregado
+    clienteId?: number | null;
   }) {
     const secret = this.configService.getOrThrow<string>('JWT_SECRET');
     const expiresIn = this.configService.getOrThrow<string>('JWT_EXPIRES_IN');
-
-    const options: SignOptions = {
-      expiresIn: expiresIn as SignOptions['expiresIn'],
-    };
 
     return jwt.sign(
       {
@@ -56,18 +55,16 @@ export class AuthService {
         rol: usuario.rol,
         nombre: usuario.nombre,
         apellido: usuario.apellido,
-        clienteId: usuario.clienteId, // ✅ Incluido en el payload del token
+        clienteId: usuario.clienteId,
       },
       secret,
-      options,
+      { expiresIn: expiresIn as SignOptions['expiresIn'] },
     );
   }
 
-  // ✅ CORREGIDO: Busca el cliente y lo devuelve en la respuesta
   async login(loginDto: LoginDto) {
     const usuario = await this.validateUser(loginDto.email, loginDto.password);
 
-    // ✅ BUSCAR EL CLIENTE ASOCIADO A ESTE USUARIO
     const cliente = await this.prisma.cliente.findUnique({
       where: { usuarioId: usuario.id },
       select: { id: true },
@@ -75,17 +72,15 @@ export class AuthService {
 
     const clienteId = cliente?.id ?? null;
 
-    // Generamos el token incluyendo el clienteId
     const token = await this.generateToken({
       id: usuario.id,
       email: usuario.email,
       rol: usuario.rol,
       nombre: usuario.nombre,
       apellido: usuario.apellido,
-      clienteId: clienteId, // ✅ Pasamos el ID encontrado
+      clienteId,
     });
 
-    // ✅ DEVOLVEMOS EL TOKEN Y LOS DATOS DEL USUARIO INCLUYENDO clienteId
     return {
       mensaje: 'Credenciales correctas',
       token,
@@ -95,7 +90,7 @@ export class AuthService {
         apellido: usuario.apellido,
         email: usuario.email,
         rol: usuario.rol,
-        clienteId: clienteId, // ✅ AGREGADO AQUÍ PARA EL FRONTEND
+        clienteId,
       },
     };
   }
